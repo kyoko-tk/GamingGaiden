@@ -229,7 +229,7 @@ function RenderSummary() {
     $currentPC = Read-Setting "current_pc"
     $pcWarning = ""
     if ($null -eq $currentPC -and $gamingPCData.Length -gt 1) {
-        $pcWarning = "<p style='color: red; font-size: 12px; margin: 5px 0;'>⚠ Current PC unidentified. Mark a PC as current to measure PC usage</p>"
+        $pcWarning = "<p style='color: red; font-size: 12px; margin: 5px 0;'>⚠ Текущий ПК не определен. Отметьте ПК как текущий для измерения использования ПК</p>"
     }
 
     $TotalAnnualGamingHoursQuery = "SELECT 
@@ -266,7 +266,7 @@ function RenderSummary() {
         $ageSpan = New-TimeSpan -Start $startDate -End $endDate
         $ageYears = [Math]::Floor($ageSpan.TotalDays / 365.25)
         $ageMonths = [Math]::Floor(($ageSpan.TotalDays % 365.25) / 30.4375)
-        $pcAge = "{0} Years and {1} Months" -f $ageYears, $ageMonths
+        $pcAge = "{0} лет и {1} месяцев" -f $ageYears, $ageMonths
 
         # Get game count for this PC
         $getGamesPlayedQuery = "SELECT COUNT(*) as game_count FROM games WHERE gaming_pc_name LIKE '%{0}%'" -f $name
@@ -301,7 +301,7 @@ function RenderSummary() {
     $totalPlayTime = PlayTimeMinsToString $gamesSummaryData.total_play_time
     $totalIdleTime = PlayTimeMinsToString $gamesSummaryData.total_idle_time
 
-    $summaryStatement = "<b>Duration: </b>$startDate - $endDate. <b>Games: </b>$($gamesSummaryData.total_games). <b>Sessions: </b>$($gamesSummaryData.total_sessions).<br><br><b>Play time: </b>$totalPlayTime. <b>Idle time: </b>$totalIdleTime."
+    $summaryStatement = "<b>Период: </b>$startDate - $endDate. <b>Игр: </b>$($gamesSummaryData.total_games). <b>Сессий: </b>$($gamesSummaryData.total_sessions).<br><br><b>Время игры: </b>$totalPlayTime. <b>Время простоя: </b>$totalIdleTime."
 
     $summaryTable = $gamesPlayTimeVsSessionData | ConvertTo-Html -Fragment
     $pcTable = $gamingPCs | ConvertTo-Html -Fragment
