@@ -13,6 +13,8 @@
   flex: 1;
   min-width: 0;
   margin: 0 5px;
+  white-space: normal;
+  word-wrap: break-word;
 }
 
 .help-button {

@@ -414,7 +414,7 @@ function RenderPCvsEmulation() {
 }
 
 function RenderAboutDialog() {
-    $aboutForm = CreateForm "О программе" 350 280 ".\icons\running.ico"
+    $aboutForm = CreateForm "О программе" 350 315 ".\icons\running.ico"
 
     $pictureBox = CreatePictureBox "./icons/banner.png" 0 10 345 70
     $aboutForm.Controls.Add($pictureBox)
@@ -435,16 +435,25 @@ function RenderAboutDialog() {
         })
     $aboutForm.Controls.Add($labelHome)
 
+    $labelRussianFork = New-Object Windows.Forms.LinkLabel
+    $labelRussianFork.Text = "Русская версия / Russian Fork"
+    $labelRussianFork.Location = New-Object Drawing.Point(95, 165)
+    $labelRussianFork.AutoSize = $true
+    $labelRussianFork.Add_LinkClicked({
+            Start-Process "https://github.com/kyoko-tk/GamingGaiden"
+        })
+    $aboutForm.Controls.Add($labelRussianFork)
+
     $labelAttributions = New-Object Windows.Forms.LinkLabel
     $labelAttributions.Text = "Open Source And Original Art Attributions"
-    $labelAttributions.Location = New-Object Drawing.Point(70, 165)
+    $labelAttributions.Location = New-Object Drawing.Point(70, 190)
     $labelAttributions.AutoSize = $true
     $labelAttributions.Add_LinkClicked({
             Start-Process "https://github.com/kulvind3r/GamingGaiden#attributions"
         })
     $aboutForm.Controls.Add($labelAttributions)
 
-    $buttonClose = CreateButton "Close" 140 205; $buttonClose.Add_Click({ $pictureBox.Image.Dispose(); $pictureBox.Dispose(); $aboutForm.Dispose() }); $aboutForm.Controls.Add($buttonClose)
+    $buttonClose = CreateButton "Закрыть" 140 240; $buttonClose.Add_Click({ $pictureBox.Image.Dispose(); $pictureBox.Dispose(); $aboutForm.Dispose() }); $aboutForm.Controls.Add($buttonClose)
 
     $aboutForm.ShowDialog()
     $pictureBox.Image.Dispose(); $pictureBox.Dispose();

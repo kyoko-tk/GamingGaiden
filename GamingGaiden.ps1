@@ -266,7 +266,7 @@ try {
     $gamingTimeMenuItem = CreateMenuItem "Время в играх"
     $mostPlayedMenuItem = CreateMenuItem "Самые популярные"
     $idleTimeMenuItem = CreateMenuItem "Время простоя"
-    $pcVsEmulationMenuItem = CreateMenuItem "ПК против эмуляции"
+    $pcVsEmulationMenuItem = CreateMenuItem "ПК vs Эмуляция"
     $summaryItem = CreateMenuItem "Общая сводка"
     $gamesPerPlatformMenuItem = CreateMenuItem "Игры по платформам"
     $sessionHistoryMenuItem = CreateMenuItem "История сессий"
