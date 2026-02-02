@@ -68,12 +68,12 @@
       document.getElementById("game-count").addEventListener("change", () => {
         updateChart(
           document.getElementById("game-count").value,
-          "Playtime (Hours)",
+          "Время игры (часы)",
           10
         );
       });
 
-      updateChart(10, "Playtime (Hours)", 10);
+      updateChart(10, "Время игры (часы)", 10);
     </script>
     <div id="navigation-bar">
       <button class="custom-button" id="summary-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/Summary.html';">Общая сводка</button>

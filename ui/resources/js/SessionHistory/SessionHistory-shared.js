@@ -162,9 +162,9 @@ function updateStatsDisplay(games) {
   const totalHours = (totalMinutes / 60).toFixed(1);
 
   document.getElementById('total-games-count').textContent =
-    `${totalGames} game${totalGames !== 1 ? 's' : ''}`;
+    `${totalGames} ${totalGames !== 1 ? 'игр' : 'игра'}`;
   document.getElementById('total-time-played').textContent =
-    `${totalHours}h total`;
+    `${totalHours}ч всего`;
 }
 
 // ===== INITIALIZATION =====
