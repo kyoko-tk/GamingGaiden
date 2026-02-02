@@ -32,7 +32,7 @@ function loadGameCardsForDate(dateStr) {
   });
 
   document.getElementById('selected-date-title').textContent =
-    `Игры, сыгранные ${dateDisplay}`;
+    `Игры, сыгранные в ${dateDisplay}`;
 
   // Update stats and render
   updateStatsDisplay(games);

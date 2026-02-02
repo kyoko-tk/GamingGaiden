@@ -636,7 +636,7 @@ function updateSpecificDateChart() {
           dayEnd: dayEnd,
           nightColor: 'rgba(100, 120, 140, 0.08)'
         },
-        title: chartTitleConfig(`Почасовые сессии для ${selectedGame} на ${selectedDay}`, 15),
+        title: chartTitleConfig(`Почасовые сессии для ${selectedGame} за ${selectedDay}`, 15),
         legend: {
           display: false
         },
