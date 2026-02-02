@@ -17,7 +17,7 @@ function renderGamesList(filteredGames = null) {
     li.dataset.gameName = game.game_name;
 
     const hours = (game.total_duration / 60).toFixed(1);
-    const sessionsText = game.session_count === 1 ? "session" : "sessions";
+    const sessionsText = game.session_count === 1 ? "сессия" : "сессий";
 
     li.innerHTML = `
       <img src="${game.icon}" class="game-icon" alt="${game.game_name}">
@@ -147,7 +147,7 @@ function selectGame(gameName) {
   // Update header
   const gameData = gamesList.find((g) => g.game_name === gameName);
   const hours = (gameData.total_duration / 60).toFixed(1);
-  const sessionsText = gameData.session_count === 1 ? "session" : "sessions";
+  const sessionsText = gameData.session_count === 1 ? "сессия" : "сессий";
 
   document.getElementById("selected-game-name").innerHTML =
     `${gameName}<img src="${gameData.icon}" class="selected-game-icon" alt="${gameName}">`;
@@ -155,7 +155,7 @@ function selectGame(gameName) {
   // Populate individual stats
   document.getElementById("stat-platform").textContent = gameData.platform;
   document.getElementById("stat-sessions").textContent = `${gameData.session_count} ${sessionsText}`;
-  document.getElementById("stat-hours").textContent = `${hours} hours`;
+  document.getElementById("stat-hours").textContent = `${hours} ч`;
 
   // Filter sessions for this game
   const gameSessions = allSessions.filter((s) => s.game_name === gameName);
@@ -313,7 +313,7 @@ function updateAllTimeChart() {
             },
             label: function (context) {
               const dayData = sessionsByDay[context.dataIndex];
-              const sessionsText = dayData.sessionCount === 1 ? "session" : "sessions";
+              const sessionsText = dayData.sessionCount === 1 ? "сессия" : "сессий";
               return `${dayData.sessionCount} ${sessionsText}`;
             }
           },
@@ -341,7 +341,7 @@ function updateAllTimeChart() {
         y: {
           beginAtZero: true,
           type: "log2",
-          title: chartTitleConfig("Hours Played", 15),
+          title: chartTitleConfig("Часов сыграно", 15),
           ticks: {
             callback: function (value) {
               return value.toFixed(1) + "h";
@@ -617,7 +617,7 @@ function updateSpecificDateChart() {
     data: {
       datasets: [
         {
-          label: "Session Duration (Hours)",
+          label: "Длительность сессии (часы)",
           data: timelineData,
           borderWidth: 2,
           borderSkipped: false,
@@ -636,7 +636,7 @@ function updateSpecificDateChart() {
           dayEnd: dayEnd,
           nightColor: 'rgba(100, 120, 140, 0.08)'
         },
-        title: chartTitleConfig(`Hourly Sessions for ${selectedGame} on ${selectedDay}`, 15),
+        title: chartTitleConfig(`Почасовые сессии для ${selectedGame} на ${selectedDay}`, 15),
         legend: {
           display: false
         },
