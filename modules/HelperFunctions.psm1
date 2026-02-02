@@ -150,10 +150,13 @@ function CreateTextBox($Text, $DrawX, $DrawY, $SizeX, $SizeY) {
     return $textBox
 }
 
-function CreateButton($Text, $DrawX, $DrawY) {
+function CreateButton($Text, $DrawX, $DrawY, $Width = $null) {
     $button = New-Object System.Windows.Forms.Button
     $button.Location = New-Object Drawing.Point($DrawX, $DrawY)
     $button.Text = $Text
+    if ($null -ne $Width) {
+        $button.Width = $Width
+    }
 
     return $button
 }

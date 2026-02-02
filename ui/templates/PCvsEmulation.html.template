@@ -29,7 +29,7 @@
   </head>
 
   <body>
-    <h1>Время игры: ПК против эмуляции</h1>
+    <h1>Время игры: ПК vs Эмуляция</h1>
     <div id="main-panel">
     <div id="chart-container">
       <canvas id="pc-vs-emulation-chart"></canvas>
@@ -47,7 +47,7 @@
       <button class="custom-button" id="idle-time-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/IdleTime.html';">Время простоя</button>
       <button class="custom-button" id="session-history-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/SessionHistory.html';">История сессий</button>
       <button class="custom-button" id="games-per-platform-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/GamesPerPlatform.html';">Игры по платформам</button>
-      <button class="custom-button" id="pc-vs-emu-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/PCvsEmulation.html';">ПК против эмуляции</button>
+      <button class="custom-button" id="pc-vs-emu-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/PCvsEmulation.html';">ПК vs Эмуляция</button>
     </div>
   </body>
 </html>
