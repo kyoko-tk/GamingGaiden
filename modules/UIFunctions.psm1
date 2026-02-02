@@ -140,11 +140,15 @@ function RenderGameList() {
 
     $table = $games | ConvertTo-Html -Fragment -Property Icon, Name, Platform, Playtime, Session_Count, Completed, Gaming_PC, Last_Played_On
 
-    $report = (Get-Content $workingDirectory\ui\templates\AllGames.html.template) -replace "_GAMESTABLE_", $table
-    $report = $report -replace "Last_Played_On", "Last Played On"
-    $report = $report -replace "Session_Count", "Sessions"
-    $report = $report -replace "Completed", "Status"
-    $report = $report -replace "Gaming_PC", "Gaming PC"
+    $report = (Get-Content -Encoding UTF8 $workingDirectory\ui\templates\AllGames.html.template) -replace "_GAMESTABLE_", $table
+    $report = $report -replace "<th>Icon</th>", "<th>Иконка</th>"
+    $report = $report -replace "<th>Name</th>", "<th>Название</th>"
+    $report = $report -replace "<th>Platform</th>", "<th>Платформа</th>"
+    $report = $report -replace "<th>Playtime</th>", "<th>Время игры</th>"
+    $report = $report -replace "<th>Last_Played_On</th>", "<th>Последняя игра</th>"
+    $report = $report -replace "<th>Session_Count</th>", "<th>Сессии</th>"
+    $report = $report -replace "<th>Completed</th>", "<th>Статус</th>"
+    $report = $report -replace "<th>Gaming_PC</th>", "<th>Игровой ПК</th>"
     $report = $report -replace "_MAXPLAYTIME_", $maxPlayTime
     $report = $report -replace "_TOTALGAMECOUNT_", $games.Count
 
@@ -172,7 +176,7 @@ function RenderGamingTime() {
 
     $table = $dailyPlayTimeData | ConvertTo-Html -Fragment
 
-    $report = (Get-Content $workingDirectory\ui\templates\GamingTime.html.template) -replace "_DAILYPLAYTIMETABLE_", $table
+    $report = (Get-Content -Encoding UTF8 $workingDirectory\ui\templates\GamingTime.html.template) -replace "_DAILYPLAYTIMETABLE_", $table
 
     [System.Web.HttpUtility]::HtmlDecode($report) | Out-File -encoding UTF8 $workingDirectory\ui\GamingTime.html
 }
@@ -198,7 +202,7 @@ function RenderMostPlayed() {
 
     $table = $gamesPlayTimeData | ConvertTo-Html -Fragment
 
-    $report = (Get-Content $workingDirectory\ui\templates\MostPlayed.html.template) -replace "_GAMESPLAYTIMETABLE_", $table
+    $report = (Get-Content -Encoding UTF8 $workingDirectory\ui\templates\MostPlayed.html.template) -replace "_GAMESPLAYTIMETABLE_", $table
 
     [System.Web.HttpUtility]::HtmlDecode($report) | Out-File -encoding UTF8 $workingDirectory\ui\MostPlayed.html
 }
@@ -307,7 +311,7 @@ function RenderSummary() {
     $pcTable = $gamingPCs | ConvertTo-Html -Fragment
     $annualHoursTable = $totalAnnualGamingHoursData | ConvertTo-Html -Fragment
 
-    $report = (Get-Content $workingDirectory\ui\templates\Summary.html.template) -replace "_SUMMARYTABLE_", $summaryTable
+    $report = (Get-Content -Encoding UTF8 $workingDirectory\ui\templates\Summary.html.template) -replace "_SUMMARYTABLE_", $summaryTable
     $report = $report -replace "_SUMMARYSTATEMENT_", $summaryStatement
     $report = $report -replace "_ANNUALGAMINGHOURSTABLE_", $annualHoursTable
     $report = $report -replace "_PCTABLE_", $pcTable
@@ -341,7 +345,7 @@ function RenderIdleTime() {
 
     $table = $gamesIdleTimeData | ConvertTo-Html -Fragment
 
-    $report = (Get-Content $workingDirectory\ui\templates\IdleTime.html.template) -replace "_GAMESIDLETIMETABLE_", $table
+    $report = (Get-Content -Encoding UTF8 $workingDirectory\ui\templates\IdleTime.html.template) -replace "_GAMESIDLETIMETABLE_", $table
     $report = $report -replace "_TOTALIDLETIME_", $totalIdleTimeString
 
     [System.Web.HttpUtility]::HtmlDecode($report) | Out-File -encoding UTF8 $workingDirectory\ui\IdleTime.html
@@ -368,7 +372,7 @@ function RenderGamesPerPlatform() {
 
     $table = $getGamesPerPlatformData | ConvertTo-Html -Fragment
 
-    $report = (Get-Content $workingDirectory\ui\templates\GamesPerPlatform.html.template) -replace "_GAMESPERPLATFORMTABLE_", $table
+    $report = (Get-Content -Encoding UTF8 $workingDirectory\ui\templates\GamesPerPlatform.html.template) -replace "_GAMESPERPLATFORMTABLE_", $table
 
     [System.Web.HttpUtility]::HtmlDecode($report) | Out-File -encoding UTF8 $workingDirectory\ui\GamesPerPlatform.html
 }
@@ -404,7 +408,7 @@ function RenderPCvsEmulation() {
 
     $table = $pcVsEmulationTime | ConvertTo-Html -Fragment
 
-    $report = (Get-Content $workingDirectory\ui\templates\PCvsEmulation.html.template) -replace "_PCVSEMULATIONTABLE_", $table
+    $report = (Get-Content -Encoding UTF8 $workingDirectory\ui\templates\PCvsEmulation.html.template) -replace "_PCVSEMULATIONTABLE_", $table
 
     [System.Web.HttpUtility]::HtmlDecode($report) | Out-File -encoding UTF8 $workingDirectory\ui\PCvsEmulation.html
 }
@@ -620,7 +624,7 @@ ORDER BY sh.game_name ASC
     $gamesTable = $gamesWithSessions | ConvertTo-Html -Fragment
 
     # Load template and replace placeholders
-    $report = (Get-Content $workingDirectory\ui\templates\SessionHistory.html.template) `
+    $report = (Get-Content -Encoding UTF8 $workingDirectory\ui\templates\SessionHistory.html.template) `
         -replace "_SESSIONTABLE_", $sessionTable `
         -replace "_GAMESTABLE_", $gamesTable
 

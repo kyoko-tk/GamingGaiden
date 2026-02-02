@@ -237,7 +237,7 @@ function RenderEditGameForm($GamesList) {
     $editGameForm.Controls.Add($buttonSearchIcon)
 
     $buttonUpdateIcon = CreateButton "Обновить" 90 230
-    $buttonUpdateIcon.Size = New-Object System.Drawing.Size(60, 23)
+    $buttonUpdateIcon.Size = New-Object System.Drawing.Size(85, 23)
     $buttonUpdateIcon.Add_Click({
             $downloadsDirectoryPath = (New-Object -ComObject Shell.Application).Namespace('shell:Downloads').Self.Path
             $openFileDialog = OpenFileDialog "Select Game Icon File" 'Image (*.png, *.jpg, *.jpeg)|*.png;*.jpg;*.jpeg' $downloadsDirectoryPath
@@ -385,7 +385,7 @@ function RenderEditPlatformForm($PlatformsList) {
     $textExe = CreateTextBox "" 75 82 200 20; $textExe.ReadOnly = $true; $editPlatformForm.Controls.Add($textExe)
 
     $labelRomExt = Createlabel "Расширения ROM:" 10 146;	$editPlatformForm.Controls.Add($labelRomExt)
-    $textRomExt = CreateTextBox "" 75 144 200 20;	$editPlatformForm.Controls.Add($textRomExt)
+    $textRomExt = CreateTextBox "" 115 144 160 20;	$editPlatformForm.Controls.Add($textRomExt)
 
     $labelCores = Createlabel "Ядра:" 10 208; $editPlatformForm.Controls.Add($labelCores)
     $textCore = CreateTextBox "" 75 206 200 20;	$textCore.ReadOnly = $true;	$editPlatformForm.Controls.Add($textCore)
@@ -438,7 +438,7 @@ function RenderEditPlatformForm($PlatformsList) {
         })
     $editPlatformForm.Controls.Add($buttonUpdateCore)
 
-    $buttonUpdateExe = CreateButton "Добавить Exe" 300 65
+    $buttonUpdateExe = CreateButton "Добавить Exe" 300 65 130
     $buttonUpdateExe.Add_Click({
             $openFileDialog = OpenFileDialog "Select Executable" 'Executable (*.exe)|*.exe'
             $result = $openFileDialog.ShowDialog()
@@ -456,7 +456,7 @@ function RenderEditPlatformForm($PlatformsList) {
         })
     $editPlatformForm.Controls.Add($buttonUpdateExe)
 
-    $buttonClearExe = CreateButton "Очистить список" 300 95
+    $buttonClearExe = CreateButton "Очистить список" 300 95 130
     $buttonClearExe.Add_Click({
             $textExe.Text = ""
         })
@@ -590,7 +590,7 @@ function RenderAddGameForm() {
     $labelPictureBox = Createlabel "Значок игры" 62 167; $addGameForm.Controls.Add($labelPictureBox)
 
     $buttonUpdateIcon = CreateButton "Обновить" 95 220
-    $buttonUpdateIcon.Size = New-Object System.Drawing.Size(60, 23)
+    $buttonUpdateIcon.Size = New-Object System.Drawing.Size(85, 23)
     $buttonUpdateIcon.Add_Click({
             $downloadsDirectoryPath = (New-Object -ComObject Shell.Application).Namespace('shell:Downloads').Self.Path
             $openFileDialog = OpenFileDialog "Select Game Icon File" 'Image (*.png, *.jpg, *.jpeg)|*.png;*.jpg;*.jpeg' $downloadsDirectoryPath
@@ -605,7 +605,7 @@ function RenderAddGameForm() {
         })
     $addGameForm.Controls.Add($buttonUpdateIcon)
 
-    $buttonUpdateExe = CreateButton "Добавить Exe" 470 60
+    $buttonUpdateExe = CreateButton "Добавить Exe" 470 60 130
     $buttonUpdateExe.Add_Click({
             $openFileDialog = OpenFileDialog "Select Executable" 'Executable (*.exe)|*.exe'
             $result = $openFileDialog.ShowDialog()
@@ -841,7 +841,7 @@ function RenderGamingPCForm($PCList) {
     $gamingPCForm.Controls.Add($listBox)
     
     $buttonUpdateImage = CreateButton "Обновить изображение" 40 220
-    $buttonUpdateImage.Size = New-Object System.Drawing.Size(90, 23)
+    $buttonUpdateImage.Size = New-Object System.Drawing.Size(165, 23)
     $buttonUpdateImage.Add_Click({
             $downloadsDirectoryPath = (New-Object -ComObject Shell.Application).Namespace('shell:Downloads').Self.Path
             $openFileDialog = OpenFileDialog "Select PC Image File" 'Image (*.png, *.jpg, *.jpeg)|*.png;*.jpg;*.jpeg' $downloadsDirectoryPath
@@ -878,7 +878,7 @@ function RenderGamingPCForm($PCList) {
         })
     $gamingPCForm.Controls.Add($buttonRemove)
 
-    $buttonUpdate = CreateButton "Обновить" 290 220
+    $buttonUpdate = CreateButton "Обновить" 290 220 85
     $buttonUpdate.Add_Click({
             $currentlySelectedIndex = $listBox.SelectedIndex
 
@@ -1017,7 +1017,7 @@ function RenderAddPlatformForm() {
     $textExe = CreateTextBox "" 85 82 200 20; $textExe.ReadOnly = $true; $addPlatformForm.Controls.Add($textExe)
 
     $labelRomExt = Createlabel "Расширения ROM:" 10 146;	$addPlatformForm.Controls.Add($labelRomExt)
-    $textRomExt = CreateTextBox "" 85 144 200 20; $addPlatformForm.Controls.Add($textRomExt)
+    $textRomExt = CreateTextBox "" 115 144 160 20; $addPlatformForm.Controls.Add($textRomExt)
 
     $labelCores = Createlabel "Core:" 10 208; $labelCores.hide(); $addPlatformForm.Controls.Add($labelCores)
     $textCore = CreateTextBox "" 85 206 200 20;	$textCore.ReadOnly = $true;	$textCore.hide(); $addPlatformForm.Controls.Add($textCore)
@@ -1033,7 +1033,7 @@ function RenderAddPlatformForm() {
         })
     $addPlatformForm.Controls.Add($buttonAddCore)
 
-    $buttonAddExe = CreateButton "Добавить Exe" 300 65
+    $buttonAddExe = CreateButton "Добавить Exe" 300 65 130
     $buttonAddExe.Add_Click({
             $openFileDialog = OpenFileDialog "Select Executable" 'Executable (*.exe)|*.exe'
             $result = $openFileDialog.ShowDialog()
@@ -1067,7 +1067,7 @@ function RenderAddPlatformForm() {
         })
     $addPlatformForm.Controls.Add($buttonAddExe)
 
-    $buttonClearExe = CreateButton "Очистить список" 300 95
+    $buttonClearExe = CreateButton "Очистить список" 300 95 130
     $buttonClearExe.Add_Click({
             $textExe.Text = ""
         })
