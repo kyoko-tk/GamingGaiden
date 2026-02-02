@@ -410,7 +410,7 @@ function RenderPCvsEmulation() {
 }
 
 function RenderAboutDialog() {
-    $aboutForm = CreateForm "About" 350 280 ".\icons\running.ico"
+    $aboutForm = CreateForm "О программе" 350 280 ".\icons\running.ico"
 
     $pictureBox = CreatePictureBox "./icons/banner.png" 0 10 345 70
     $aboutForm.Controls.Add($pictureBox)
@@ -456,7 +456,7 @@ function RenderQuickView() {
         return
     }
 
-    $quickViewForm = CreateForm "Currently Playing / Recently Finished Games" 390 378 ".\icons\running.ico"
+    $quickViewForm = CreateForm "Играю сейчас / Недавно завершённые игры" 390 378 ".\icons\running.ico"
     $quickViewForm.MaximizeBox = $false; $quickViewForm.MinimizeBox = $false;
     $quickViewForm.StartPosition = [System.Windows.Forms.FormStartPosition]::Manual
 
@@ -482,9 +482,9 @@ function RenderQuickView() {
     $IconColumn.ImageLayout = [System.Windows.Forms.DataGridViewImageCellLayout]::Zoom
     $dataGridView.Columns.Add($IconColumn)
 
-    $dataGridView.Columns.Add("name", "Name")
-    $dataGridView.Columns.Add("play_time", "Playtime")
-    $dataGridView.Columns.Add("last_play_date", "Last Played On")
+    $dataGridView.Columns.Add("name", "Название")
+    $dataGridView.Columns.Add("play_time", "Время игры")
+    $dataGridView.Columns.Add("last_play_date", "Последняя игра")
 
     foreach ($column in $dataGridView.Columns) {
         $column.Resizable = [System.Windows.Forms.DataGridViewTriState]::False

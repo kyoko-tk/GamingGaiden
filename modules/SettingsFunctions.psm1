@@ -41,7 +41,7 @@ function RefreshPCListBox {
 
 function RenderEditGameForm($GamesList) {
 
-    $editGameForm = CreateForm "Gaming Gaiden: Edit Game" 865 345 ".\icons\running.ico"
+    $editGameForm = CreateForm "Gaming Gaiden: Редактировать игру" 865 345 ".\icons\running.ico"
 
     $imagePath = "./icons/default.png"
 
@@ -56,26 +56,26 @@ function RenderEditGameForm($GamesList) {
     $listBox.Height = 200
     [void] $listBox.Items.AddRange($GamesList)
 
-    $labelSearch = Createlabel "Search:" 585 20; $editGameForm.Controls.Add($labelSearch)
+    $labelSearch = Createlabel "Поиск:" 585 20; $editGameForm.Controls.Add($labelSearch)
     $textSearch = CreateTextBox "" 645 20 200 20; $editGameForm.Controls.Add($textSearch)
 
     $textSearch.Add_TextChanged({
             FilterListBox -filterText $textSearch.Text -listBox $listBox -originalItems $GamesList
         })
 
-    $labelName = Createlabel "Name:" 170 20; $editGameForm.Controls.Add($labelName)
+    $labelName = Createlabel "Название:" 170 20; $editGameForm.Controls.Add($labelName)
     $textName = CreateTextBox "" 245 20 300 20;	$editGameForm.Controls.Add($textName)
 
     $labelExe = Createlabel "Exe:" 170 60; $editGameForm.Controls.Add($labelExe)
     $textExe = CreateTextBox "" 245 60 200 20; $textExe.ReadOnly = $true; $editGameForm.Controls.Add($textExe)
 
-    $labelPlatform = Createlabel "Platform:" 170 100; $editGameForm.Controls.Add($labelPlatform)
+    $labelPlatform = Createlabel "Платформа:" 170 100; $editGameForm.Controls.Add($labelPlatform)
     $textPlatform = CreateTextBox "" 245 100 200 20; $editGameForm.Controls.Add($textPlatform)
 
-    $labelPlayTime = Createlabel "PlayTime:" 170 140; $editGameForm.Controls.Add($labelPlayTime)
+    $labelPlayTime = Createlabel "Время игры:" 170 140; $editGameForm.Controls.Add($labelPlayTime)
     $textPlayTime = CreateTextBox "" 245 140 200 20; $editGameForm.Controls.Add($textPlayTime)
 
-    $labelGamingPC = Createlabel "Gaming PC:" 170 180; $editGameForm.Controls.Add($labelGamingPC)
+    $labelGamingPC = Createlabel "Игровой ПК:" 170 180; $editGameForm.Controls.Add($labelGamingPC)
     $listboxGamingPC = New-Object System.Windows.Forms.ListBox
     $listboxGamingPC.Location = New-Object System.Drawing.Point(245, 180)
     $listboxGamingPC.Size = New-Object System.Drawing.Size(200, 80)
@@ -100,13 +100,13 @@ function RenderEditGameForm($GamesList) {
     $editGameForm.Controls.Add($listboxGamingPC)
 
     $checkboxCompleted = New-Object Windows.Forms.CheckBox
-    $checkboxCompleted.Text = "Finished"
+    $checkboxCompleted.Text = "Пройдено"
     $checkboxCompleted.Top = 175
     $checkboxCompleted.Left = 470
     $editGameForm.Controls.Add($checkboxCompleted)
 
     $checkboxDropped = New-Object Windows.Forms.CheckBox
-    $checkboxDropped.Text = "Dropped"
+    $checkboxDropped.Text = "Брошено"
     $checkboxDropped.Top = 195
     $checkboxDropped.Left = 470
     $checkboxDropped.Add_CheckedChanged({
@@ -125,7 +125,7 @@ function RenderEditGameForm($GamesList) {
     $editGameForm.Controls.Add($checkboxDropped)
 
     $checkboxHold = New-Object Windows.Forms.CheckBox
-    $checkboxHold.Text = "Pick Up Later"
+    $checkboxHold.Text = "Отложено"
     $checkboxHold.Top = 215
     $checkboxHold.Left = 470
     $checkboxHold.Add_CheckedChanged({
@@ -144,7 +144,7 @@ function RenderEditGameForm($GamesList) {
     $editGameForm.Controls.Add($checkboxHold)
 
     $checkboxForever = New-Object Windows.Forms.CheckBox
-    $checkboxForever.Text = "Forever Game"
+    $checkboxForever.Text = "Вечная игра"
     $checkboxForever.Top = 235
     $checkboxForever.Left = 470
     $checkboxForever.Add_CheckedChanged({
@@ -162,7 +162,7 @@ function RenderEditGameForm($GamesList) {
         })
     $editGameForm.Controls.Add($checkboxForever)
 
-    $labelPictureBox = Createlabel "Game Icon" 57 200; $editGameForm.Controls.Add($labelPictureBox)
+    $labelPictureBox = Createlabel "Значок игры" 57 200; $editGameForm.Controls.Add($labelPictureBox)
     $pictureBox = CreatePictureBox $imagePath 15 40 140 140
     $editGameForm.Controls.Add($pictureBox)
 
@@ -223,7 +223,7 @@ function RenderEditGameForm($GamesList) {
         })
     $editGameForm.Controls.Add($listBox)
 
-    $buttonSearchIcon = CreateButton "Search" 20 230
+    $buttonSearchIcon = CreateButton "Поиск" 20 230
     $buttonSearchIcon.Size = New-Object System.Drawing.Size(60, 23)
     $buttonSearchIcon.Add_Click({
             $gameName = $textName.Text
@@ -236,7 +236,7 @@ function RenderEditGameForm($GamesList) {
         })
     $editGameForm.Controls.Add($buttonSearchIcon)
 
-    $buttonUpdateIcon = CreateButton "Update" 90 230
+    $buttonUpdateIcon = CreateButton "Обновить" 90 230
     $buttonUpdateIcon.Size = New-Object System.Drawing.Size(60, 23)
     $buttonUpdateIcon.Add_Click({
             $downloadsDirectoryPath = (New-Object -ComObject Shell.Application).Namespace('shell:Downloads').Self.Path
@@ -252,7 +252,7 @@ function RenderEditGameForm($GamesList) {
         })
     $editGameForm.Controls.Add($buttonUpdateIcon)
 
-    $buttonUpdateExe = CreateButton "Edit Exe" 470 60
+    $buttonUpdateExe = CreateButton "Изменить Exe" 470 60
     $buttonUpdateExe.Add_Click({
             $openFileDialog = OpenFileDialog "Select Executable" 'Executable (*.exe)|*.exe'
             $result = $openFileDialog.ShowDialog()
@@ -263,7 +263,7 @@ function RenderEditGameForm($GamesList) {
         })
     $editGameForm.Controls.Add($buttonUpdateExe)
 
-    $buttonRemove = CreateButton "Delete" 470 100
+    $buttonRemove = CreateButton "Удалить" 470 100
     $buttonRemove.Add_Click({
             $gameName = $textName.Text
 
@@ -285,7 +285,7 @@ function RenderEditGameForm($GamesList) {
         })
     $editGameForm.Controls.Add($buttonRemove)
 
-    $buttonOK = CreateButton "OK" 245 270
+    $buttonOK = CreateButton "ОК" 245 270
     $buttonOK.Add_Click({
             $currentlySelectedIndex = $listBox.SelectedIndex
 
@@ -338,7 +338,7 @@ function RenderEditGameForm($GamesList) {
         })
     $editGameForm.Controls.Add($buttonOK)
 
-    $buttonCancel = CreateButton "Cancel" 370 270;
+    $buttonCancel = CreateButton "Отмена" 370 270;
     $buttonCancel.Add_Click({
             $textSearch.Remove_TextChanged({})
             $listBox.Remove_SelectedIndexChanged({})
@@ -359,7 +359,7 @@ function RenderEditGameForm($GamesList) {
 
 function RenderEditPlatformForm($PlatformsList) {
 
-    $editPlatformForm =	CreateForm "Gaming Gaiden: Edit Platform" 645  320 ".\icons\running.ico"
+    $editPlatformForm =	CreateForm "Gaming Gaiden: Редактировать платформу" 645  320 ".\icons\running.ico"
 
     # Hidden fields to save non user editable values
     $textOriginalPlatformName = CreateTextBox "" 654 329 1 1; $textOriginalPlatformName.hide(); $editPlatformForm.Controls.Add($textOriginalPlatformName)
@@ -371,23 +371,23 @@ function RenderEditPlatformForm($PlatformsList) {
     $listBox.Height = 212
     [void] $listBox.Items.AddRange($PlatformsList)
 
-    $labelSearch = Createlabel "Search:" 400 20; $editPlatformForm.Controls.Add($labelSearch)
+    $labelSearch = Createlabel "Поиск:" 400 20; $editPlatformForm.Controls.Add($labelSearch)
     $textSearch = CreateTextBox "" 465 20 160 20; $editPlatformForm.Controls.Add($textSearch)
 
     $textSearch.Add_TextChanged({
             FilterListBox -filterText $textSearch.Text -listBox $listBox -originalItems $PlatformsList
         })
 
-    $labelName = Createlabel "Platorm:" 10 20; $editPlatformForm.Controls.Add($labelName)
+    $labelName = Createlabel "Платформа:" 10 20; $editPlatformForm.Controls.Add($labelName)
     $textName = CreateTextBox "" 75 20 200 20; $editPlatformForm.Controls.Add($textName)
 
     $labelExe = Createlabel "Emulator`nExe List:" 10 79; $editPlatformForm.Controls.Add($labelExe)
     $textExe = CreateTextBox "" 75 82 200 20; $textExe.ReadOnly = $true; $editPlatformForm.Controls.Add($textExe)
 
-    $labelRomExt = Createlabel "Rom Extns:" 10 146;	$editPlatformForm.Controls.Add($labelRomExt)
+    $labelRomExt = Createlabel "Расширения ROM:" 10 146;	$editPlatformForm.Controls.Add($labelRomExt)
     $textRomExt = CreateTextBox "" 75 144 200 20;	$editPlatformForm.Controls.Add($textRomExt)
 
-    $labelCores = Createlabel "Cores:" 10 208; $editPlatformForm.Controls.Add($labelCores)
+    $labelCores = Createlabel "Ядра:" 10 208; $editPlatformForm.Controls.Add($labelCores)
     $textCore = CreateTextBox "" 75 206 200 20;	$textCore.ReadOnly = $true;	$editPlatformForm.Controls.Add($textCore)
 
     $listBox.Add_SelectedIndexChanged({
@@ -427,7 +427,7 @@ function RenderEditPlatformForm($PlatformsList) {
         })
     $editPlatformForm.Controls.Add($listBox)
 
-    $buttonUpdateCore = CreateButton "Edit Core" 300 204
+    $buttonUpdateCore = CreateButton "Изменить ядро" 300 204
     $buttonUpdateCore.Add_Click({
             $openFileDialog = OpenFileDialog "Select Retroarch Core" 'DLL (*.dll)|*.dll'
             $result = $openFileDialog.ShowDialog()
@@ -438,7 +438,7 @@ function RenderEditPlatformForm($PlatformsList) {
         })
     $editPlatformForm.Controls.Add($buttonUpdateCore)
 
-    $buttonUpdateExe = CreateButton "Add Exe" 300 65
+    $buttonUpdateExe = CreateButton "Добавить Exe" 300 65
     $buttonUpdateExe.Add_Click({
             $openFileDialog = OpenFileDialog "Select Executable" 'Executable (*.exe)|*.exe'
             $result = $openFileDialog.ShowDialog()
@@ -456,13 +456,13 @@ function RenderEditPlatformForm($PlatformsList) {
         })
     $editPlatformForm.Controls.Add($buttonUpdateExe)
 
-    $buttonClearExe = CreateButton "Clear List" 300 95
+    $buttonClearExe = CreateButton "Очистить список" 300 95
     $buttonClearExe.Add_Click({
             $textExe.Text = ""
         })
     $editPlatformForm.Controls.Add($buttonClearExe)
 
-    $buttonRemove = CreateButton "Delete" 300 18
+    $buttonRemove = CreateButton "Удалить" 300 18
     $buttonRemove.Add_Click({
             $platformName = $textName.Text
 
@@ -484,7 +484,7 @@ function RenderEditPlatformForm($PlatformsList) {
         })
     $editPlatformForm.Controls.Add($buttonRemove)
 
-    $buttonOK = CreateButton "OK" 85 254
+    $buttonOK = CreateButton "ОК" 85 254
     $buttonOK.Add_Click({
             $currentlySelectedIndex = $listBox.SelectedIndex
 
@@ -514,7 +514,7 @@ function RenderEditPlatformForm($PlatformsList) {
         })
     $editPlatformForm.Controls.Add($buttonOK)
 
-    $buttonCancel = CreateButton "Cancel" 210 254;	$buttonCancel.Add_Click({ 
+    $buttonCancel = CreateButton "Отмена" 210 254;	$buttonCancel.Add_Click({ 
             $textSearch.Remove_TextChanged({})
             $listBox.Remove_SelectedIndexChanged({})
             $editPlatformForm.Dispose() 
@@ -531,21 +531,21 @@ function RenderEditPlatformForm($PlatformsList) {
 }
 
 function RenderAddGameForm() {
-    $addGameForm =	CreateForm "Gaming Gaiden: Add Game" 570 295 ".\icons\running.ico"
+    $addGameForm =	CreateForm "Gaming Gaiden: Добавить игру" 570 295 ".\icons\running.ico"
 
-    $labelName = Createlabel "Name:" 170 20; $addGameForm.Controls.Add($labelName)
+    $labelName = Createlabel "Название:" 170 20; $addGameForm.Controls.Add($labelName)
     $textName = CreateTextBox "" 245 20 300 20;	$addGameForm.Controls.Add($textName)
 
     $labelExe = Createlabel "Exe:" 170 60; $addGameForm.Controls.Add($labelExe)
     $textExe = CreateTextBox "" 245 60 200 20; $textExe.ReadOnly = $true; $addGameForm.Controls.Add($textExe)
 
-    $labelPlatform = Createlabel "Platform:" 170 100; $addGameForm.Controls.Add($labelPlatform)
+    $labelPlatform = Createlabel "Платформа:" 170 100; $addGameForm.Controls.Add($labelPlatform)
     $textPlatform = CreateTextBox "PC" 245 100 200 20; $textPlatform.ReadOnly = $true; $addGameForm.Controls.Add($textPlatform)
 
-    $labelPlayTime = Createlabel "PlayTime:" 170 140; $addGameForm.Controls.Add($labelPlayTime)
+    $labelPlayTime = Createlabel "Время игры:" 170 140; $addGameForm.Controls.Add($labelPlayTime)
     $textPlayTime = CreateTextBox "0 Hr 0 Min" 245 140 200 20; $textPlayTime.ReadOnly = $true; $addGameForm.Controls.Add($textPlayTime)
 
-    $labelGamingPC = Createlabel "Gaming PC:" 170 180; $addGameForm.Controls.Add($labelGamingPC)
+    $labelGamingPC = Createlabel "Игровой ПК:" 170 180; $addGameForm.Controls.Add($labelGamingPC)
     $dropdownGamingPC = New-Object System.Windows.Forms.ComboBox
     $dropdownGamingPC.Location = New-Object System.Drawing.Point(245, 180)
     $dropdownGamingPC.Size = New-Object System.Drawing.Size(200, 20)
@@ -568,7 +568,7 @@ function RenderAddGameForm() {
 
     $addGameForm.Controls.Add($dropdownGamingPC)
 
-    $buttonSearchIcon = CreateButton "Search" 25 220
+    $buttonSearchIcon = CreateButton "Поиск" 25 220
     $buttonSearchIcon.Size = New-Object System.Drawing.Size(60, 23)
     $buttonSearchIcon.Add_Click({
             $gameName = $textName.Text
@@ -587,9 +587,9 @@ function RenderAddGameForm() {
     $pictureBox = CreatePictureBox $imagePath 15 20 147 147
     $addGameForm.Controls.Add($pictureBox)
 
-    $labelPictureBox = Createlabel "Game Icon" 62 167; $addGameForm.Controls.Add($labelPictureBox)
+    $labelPictureBox = Createlabel "Значок игры" 62 167; $addGameForm.Controls.Add($labelPictureBox)
 
-    $buttonUpdateIcon = CreateButton "Update" 95 220
+    $buttonUpdateIcon = CreateButton "Обновить" 95 220
     $buttonUpdateIcon.Size = New-Object System.Drawing.Size(60, 23)
     $buttonUpdateIcon.Add_Click({
             $downloadsDirectoryPath = (New-Object -ComObject Shell.Application).Namespace('shell:Downloads').Self.Path
@@ -605,7 +605,7 @@ function RenderAddGameForm() {
         })
     $addGameForm.Controls.Add($buttonUpdateIcon)
 
-    $buttonUpdateExe = CreateButton "Add Exe" 470 60
+    $buttonUpdateExe = CreateButton "Добавить Exe" 470 60
     $buttonUpdateExe.Add_Click({
             $openFileDialog = OpenFileDialog "Select Executable" 'Executable (*.exe)|*.exe'
             $result = $openFileDialog.ShowDialog()
@@ -637,7 +637,7 @@ function RenderAddGameForm() {
         })
     $addGameForm.Controls.Add($buttonUpdateExe)
 
-    $buttonOK = CreateButton "OK" 245 220
+    $buttonOK = CreateButton "ОК" 245 220
     $buttonOK.Add_Click({
             if ($textExe.Text -eq "" -Or $textName.Text -eq "" ) {
                 ShowMessage "Name, Exe fields cannot be empty. Try Again." "OK" "Error"
@@ -662,7 +662,7 @@ function RenderAddGameForm() {
         })
     $addGameForm.Controls.Add($buttonOK)
 
-    $buttonCancel = CreateButton "Cancel" 370 220;
+    $buttonCancel = CreateButton "Отмена" 370 220;
     $buttonCancel.Add_Click({
             $pictureBox.Image.Dispose(); $pictureBox.Dispose();
             $addGameForm.Dispose()
@@ -676,7 +676,7 @@ function RenderAddGameForm() {
 
 function RenderGamingPCForm($PCList) {
 
-    $gamingPCForm = CreateForm "Gaming Gaiden: Gaming PCs" 710 295 ".\icons\running.ico"
+    $gamingPCForm = CreateForm "Gaming Gaiden: Игровые ПК" 710 295 ".\icons\running.ico"
 
     $imagePath = "./icons/pc.png"
 
@@ -686,7 +686,7 @@ function RenderGamingPCForm($PCList) {
     $textOriginalPCName = CreateTextBox "" 664 264 1 1; $textOriginalPCName.hide(); $gamingPCForm.Controls.Add($textOriginalPCName)
     # Hidden fields end
 
-    $labelList = Createlabel "Your PCs" 565 30; $gamingPCForm.Controls.Add($labelList)
+    $labelList = Createlabel "Ваши ПК" 565 30; $gamingPCForm.Controls.Add($labelList)
 
     # Check if warning should be shown
     $currentPC = Read-Setting "current_pc"
@@ -694,7 +694,7 @@ function RenderGamingPCForm($PCList) {
     $warningLabel = $null
 
     if ($showWarning) {
-        $warningLabel = CreateLabel "⚠ Current PC unidentified. Mark a PC as current to track PC usage" 165 2
+        $warningLabel = CreateLabel "⚠ Текущий ПК не определён. Отметьте ПК как текущий для отслеживания использования ПК" 165 2
         $warningLabel.ForeColor = [System.Drawing.Color]::Red
         $warningLabel.Font = New-Object System.Drawing.Font("Arial", 8)
         $warningLabel.AutoSize = $true
@@ -709,19 +709,19 @@ function RenderGamingPCForm($PCList) {
     # Add current PC indicator
     RefreshPCListBox -listBox $listBox
 
-    $labelName = Createlabel "Name:" 170 20; $gamingPCForm.Controls.Add($labelName)
+    $labelName = Createlabel "Название:" 170 20; $gamingPCForm.Controls.Add($labelName)
     $textName = CreateTextBox "" 240 20 245 20;	$gamingPCForm.Controls.Add($textName)
 
-    $labelTotalPlaytime = Createlabel "Playtime:" 170 50; $gamingPCForm.Controls.Add($labelTotalPlaytime)
+    $labelTotalPlaytime = Createlabel "Время игры:" 170 50; $gamingPCForm.Controls.Add($labelTotalPlaytime)
     $textTotalPlaytime = CreateTextBox "0 Hr 0 Min" 240 50 245 20; $gamingPCForm.Controls.Add($textTotalPlaytime)
 
-    $labelCurrency = Createlabel "Currency:" 170 80; $gamingPCForm.Controls.Add($labelCurrency)
+    $labelCurrency = Createlabel "Валюта:" 170 80; $gamingPCForm.Controls.Add($labelCurrency)
     $textCurrency = CreateTextBox "" 240 80 55 20;	$gamingPCForm.Controls.Add($textCurrency)
 
-    $labelCost = Createlabel "Cost:" 365 80; $gamingPCForm.Controls.Add($labelCost)
+    $labelCost = Createlabel "Цена:" 365 80; $gamingPCForm.Controls.Add($labelCost)
     $textCost = CreateTextBox "" 405 80 80 20;	$gamingPCForm.Controls.Add($textCost)
 
-    $labelStartDate = Createlabel "Start Date" 190 110; $gamingPCForm.Controls.Add($labelStartDate)
+    $labelStartDate = Createlabel "Дата начала" 190 110; $gamingPCForm.Controls.Add($labelStartDate)
     $startDatePicker = New-Object Windows.Forms.DateTimePicker
     $startDatePicker.Location = "170, 130"
     $startDatePicker.Width = "100"
@@ -730,7 +730,7 @@ function RenderGamingPCForm($PCList) {
     $startDatePicker.CustomFormat = "dd/MM/yyyy"
     $gamingPCForm.Controls.Add($startDatePicker)
 
-    $labelEndDate = Createlabel "End Date" 410 110; $gamingPCForm.Controls.Add($labelEndDate)
+    $labelEndDate = Createlabel "Дата окончания" 410 110; $gamingPCForm.Controls.Add($labelEndDate)
     $endDatePicker = New-Object Windows.Forms.DateTimePicker
     $endDatePicker.Location = "385, 130"
     $endDatePicker.Width = “100”
@@ -739,7 +739,7 @@ function RenderGamingPCForm($PCList) {
     $endDatePicker.CustomFormat = “dd/MM/yyyy”
     $gamingPCForm.Controls.Add($endDatePicker)
 
-    $labelInUse = Createlabel "In Use" 320 135; $gamingPCForm.Controls.Add($labelInUse)
+    $labelInUse = Createlabel "Используется" 320 135; $gamingPCForm.Controls.Add($labelInUse)
     $checkboxInUse = New-Object Windows.Forms.CheckBox
     $checkboxInUse.Top = 130
     $checkboxInUse.Left = 300
@@ -748,7 +748,7 @@ function RenderGamingPCForm($PCList) {
         })
     $gamingPCForm.Controls.Add($checkboxInUse)
 
-    $labelCurrentPC = Createlabel "Current" 320 170; $gamingPCForm.Controls.Add($labelCurrentPC)
+    $labelCurrentPC = Createlabel "Текущий" 320 170; $gamingPCForm.Controls.Add($labelCurrentPC)
     $checkboxCurrentPC = New-Object Windows.Forms.CheckBox
     $checkboxCurrentPC.Top = 165
     $checkboxCurrentPC.Left = 300
@@ -840,7 +840,7 @@ function RenderGamingPCForm($PCList) {
         })
     $gamingPCForm.Controls.Add($listBox)
     
-    $buttonUpdateImage = CreateButton "Update Image" 40 220
+    $buttonUpdateImage = CreateButton "Обновить изображение" 40 220
     $buttonUpdateImage.Size = New-Object System.Drawing.Size(90, 23)
     $buttonUpdateImage.Add_Click({
             $downloadsDirectoryPath = (New-Object -ComObject Shell.Application).Namespace('shell:Downloads').Self.Path
@@ -856,7 +856,7 @@ function RenderGamingPCForm($PCList) {
         })
     $gamingPCForm.Controls.Add($buttonUpdateImage)
 
-    $buttonRemove = CreateButton "Delete" 410 180
+    $buttonRemove = CreateButton "Удалить" 410 180
     $buttonRemove.Add_Click({
             $PCName = $textName.Text
 
@@ -878,7 +878,7 @@ function RenderGamingPCForm($PCList) {
         })
     $gamingPCForm.Controls.Add($buttonRemove)
 
-    $buttonUpdate = CreateButton "Update" 290 220
+    $buttonUpdate = CreateButton "Обновить" 290 220
     $buttonUpdate.Add_Click({
             $currentlySelectedIndex = $listBox.SelectedIndex
 
@@ -962,7 +962,7 @@ function RenderGamingPCForm($PCList) {
         })
     $gamingPCForm.Controls.Add($buttonUpdate)
 
-    $buttonReset = CreateButton "Reset" 170 180; $buttonReset.Add_Click({
+    $buttonReset = CreateButton "Сброс" 170 180; $buttonReset.Add_Click({
             $textName.Clear(); $textCost.Clear(); $textCurrency.Clear(); $textTotalPlaytime.Text = "0 Hr 0 Min";
 
             $PCList = (RunDBQuery "SELECT name FROM gaming_pcs").name
@@ -988,13 +988,13 @@ function RenderGamingPCForm($PCList) {
         }); 
     $gamingPCForm.Controls.Add($buttonReset)
 
-    $buttonAddNew = CreateButton "Add New" 170 220; $buttonAddNew.Add_Click({
+    $buttonAddNew = CreateButton "Добавить" 170 220; $buttonAddNew.Add_Click({
             $checkboxNew.Checked = $true
             $buttonUpdate.PerformClick() | Out-Null
         }); 
     $gamingPCForm.Controls.Add($buttonAddNew)
 
-    $buttonCancel = CreateButton "Cancel" 410 220; $buttonCancel.Add_Click({ 
+    $buttonCancel = CreateButton "Отмена" 410 220; $buttonCancel.Add_Click({ 
             $listBox.Remove_SelectedIndexChanged({})
             $pictureBox.Image.Dispose(); $pictureBox.Dispose();
             $gamingPCForm.Dispose()
@@ -1008,21 +1008,21 @@ function RenderGamingPCForm($PCList) {
 }
 
 function RenderAddPlatformForm() {
-    $addPlatformForm =	CreateForm "Gaming Gaiden: Add Emulator" 395 265 ".\icons\running.ico"
+    $addPlatformForm =	CreateForm "Gaming Gaiden: Добавить эмулятор" 395 265 ".\icons\running.ico"
 
-    $labelName = Createlabel "Platorm:" 10 20; $addPlatformForm.Controls.Add($labelName)
+    $labelName = Createlabel "Платформа:" 10 20; $addPlatformForm.Controls.Add($labelName)
     $textName = CreateTextBox "" 85 20 200 20; $addPlatformForm.Controls.Add($textName)
 
     $labelExe = Createlabel "Emulator`nExe List:" 10 79; $addPlatformForm.Controls.Add($labelExe)
     $textExe = CreateTextBox "" 85 82 200 20; $textExe.ReadOnly = $true; $addPlatformForm.Controls.Add($textExe)
 
-    $labelRomExt = Createlabel "Rom Extns:" 10 146;	$addPlatformForm.Controls.Add($labelRomExt)
+    $labelRomExt = Createlabel "Расширения ROM:" 10 146;	$addPlatformForm.Controls.Add($labelRomExt)
     $textRomExt = CreateTextBox "" 85 144 200 20; $addPlatformForm.Controls.Add($textRomExt)
 
     $labelCores = Createlabel "Core:" 10 208; $labelCores.hide(); $addPlatformForm.Controls.Add($labelCores)
     $textCore = CreateTextBox "" 85 206 200 20;	$textCore.ReadOnly = $true;	$textCore.hide(); $addPlatformForm.Controls.Add($textCore)
 
-    $buttonAddCore = CreateButton "Add Core" 300 204; $buttonAddCore.hide()
+    $buttonAddCore = CreateButton "Добавить ядро" 300 204; $buttonAddCore.hide()
     $buttonAddCore.Add_Click({
             $openFileDialog = OpenFileDialog "Select Retroarch Core" 'DLL (*.dll)|*.dll'
             $result = $openFileDialog.ShowDialog()
@@ -1033,7 +1033,7 @@ function RenderAddPlatformForm() {
         })
     $addPlatformForm.Controls.Add($buttonAddCore)
 
-    $buttonAddExe = CreateButton "Add Exe" 300 65
+    $buttonAddExe = CreateButton "Добавить Exe" 300 65
     $buttonAddExe.Add_Click({
             $openFileDialog = OpenFileDialog "Select Executable" 'Executable (*.exe)|*.exe'
             $result = $openFileDialog.ShowDialog()
@@ -1067,13 +1067,13 @@ function RenderAddPlatformForm() {
         })
     $addPlatformForm.Controls.Add($buttonAddExe)
 
-    $buttonClearExe = CreateButton "Clear List" 300 95
+    $buttonClearExe = CreateButton "Очистить список" 300 95
     $buttonClearExe.Add_Click({
             $textExe.Text = ""
         })
     $addPlatformForm.Controls.Add($buttonClearExe)
 
-    $buttonOK = CreateButton "OK" 85 200
+    $buttonOK = CreateButton "ОК" 85 200
     $buttonOK.Add_Click({
             if ($textExe.Text -eq "" -Or $textName.Text -eq "" -Or $textRomExt.Text -eq "")	{
                 ShowMessage "Platform, Exe and Extensions fields cannot be empty.`r`nTry again." "OK" "Error"
@@ -1117,7 +1117,7 @@ function RenderAddPlatformForm() {
         })
     $addPlatformForm.Controls.Add($buttonOK)
 
-    $buttonCancel = CreateButton "Cancel" 210 200; $buttonCancel.Add_Click({ $addPlatformForm.Dispose() }); $addPlatformForm.Controls.Add($buttonCancel)
+    $buttonCancel = CreateButton "Отмена" 210 200; $buttonCancel.Add_Click({ $addPlatformForm.Dispose() }); $addPlatformForm.Controls.Add($buttonCancel)
 
     $addPlatformForm.ShowDialog()
     $addPlatformForm.Dispose()
