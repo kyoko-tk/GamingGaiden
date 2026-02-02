@@ -438,7 +438,7 @@ function RenderEditPlatformForm($PlatformsList) {
         })
     $editPlatformForm.Controls.Add($buttonUpdateCore)
 
-    $buttonUpdateExe = CreateButton "Добавить Exe" 505 65 130
+    $buttonUpdateExe = CreateButton "EXE" 505 65 60
     $buttonUpdateExe.Add_Click({
             $openFileDialog = OpenFileDialog "Select Executable" 'Executable (*.exe)|*.exe'
             $result = $openFileDialog.ShowDialog()
@@ -456,7 +456,7 @@ function RenderEditPlatformForm($PlatformsList) {
         })
     $editPlatformForm.Controls.Add($buttonUpdateExe)
 
-    $buttonClearExe = CreateButton "Очистить список" 505 95 130
+    $buttonClearExe = CreateButton "Очистить" 570 95 80
     $buttonClearExe.Add_Click({
             $textExe.Text = ""
         })
@@ -605,7 +605,7 @@ function RenderAddGameForm() {
         })
     $addGameForm.Controls.Add($buttonUpdateIcon)
 
-    $buttonUpdateExe = CreateButton "Добавить Exe" 470 60 130
+    $buttonUpdateExe = CreateButton "EXE" 470 60 60
     $buttonUpdateExe.Add_Click({
             $openFileDialog = OpenFileDialog "Select Executable" 'Executable (*.exe)|*.exe'
             $result = $openFileDialog.ShowDialog()
@@ -964,7 +964,7 @@ function RenderGamingPCForm($PCList) {
         })
     $gamingPCForm.Controls.Add($buttonUpdate)
 
-    $buttonReset = CreateButton "Сброс" 170 180; $buttonReset.Add_Click({
+    $buttonReset = CreateButton "Сброс" 210 180; $buttonReset.Add_Click({
             $textName.Clear(); $textCost.Clear(); $textCurrency.Clear(); $textTotalPlaytime.Text = "0 ч 0 мин";
 
             $PCList = (RunDBQuery "SELECT name FROM gaming_pcs").name
@@ -1035,7 +1035,7 @@ function RenderAddPlatformForm() {
         })
     $addPlatformForm.Controls.Add($buttonAddCore)
 
-    $buttonAddExe = CreateButton "Добавить Exe" 255 65 130
+    $buttonAddExe = CreateButton "EXE" 255 65 60
     $buttonAddExe.Add_Click({
             $openFileDialog = OpenFileDialog "Select Executable" 'Executable (*.exe)|*.exe'
             $result = $openFileDialog.ShowDialog()
@@ -1069,7 +1069,7 @@ function RenderAddPlatformForm() {
         })
     $addPlatformForm.Controls.Add($buttonAddExe)
 
-    $buttonClearExe = CreateButton "Очистить список" 255 95 130
+    $buttonClearExe = CreateButton "Очистить" 320 95 80
     $buttonClearExe.Add_Click({
             $textExe.Text = ""
         })

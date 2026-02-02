@@ -103,6 +103,7 @@ td {
   text-align: center;
   height: 50px;
   padding: 6px 5px !important;
+  color: var(--text-primary);
 }
 
 /* Define specific styles for the Icon column */
