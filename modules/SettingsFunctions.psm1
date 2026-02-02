@@ -1017,7 +1017,7 @@ function RenderAddPlatformForm() {
     $textExe = CreateTextBox "" 85 82 200 20; $textExe.ReadOnly = $true; $addPlatformForm.Controls.Add($textExe)
 
     $labelRomExt = Createlabel "Расширения ROM:" 10 146;	$addPlatformForm.Controls.Add($labelRomExt)
-    $textRomExt = CreateTextBox "" 115 144 170 20; $addPlatformForm.Controls.Add($textRomExt)
+    $textRomExt = CreateTextBox "" 115 144 160 20; $addPlatformForm.Controls.Add($textRomExt)
 
     $labelCores = Createlabel "Core:" 10 208; $labelCores.hide(); $addPlatformForm.Controls.Add($labelCores)
     $textCore = CreateTextBox "" 85 206 200 20;	$textCore.ReadOnly = $true;	$textCore.hide(); $addPlatformForm.Controls.Add($textCore)

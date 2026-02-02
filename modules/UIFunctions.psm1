@@ -141,14 +141,14 @@ function RenderGameList() {
     $table = $games | ConvertTo-Html -Fragment -Property Icon, Name, Platform, Playtime, Session_Count, Completed, Gaming_PC, Last_Played_On
 
     $report = (Get-Content -Encoding UTF8 $workingDirectory\ui\templates\AllGames.html.template) -replace "_GAMESTABLE_", $table
-    $report = $report -replace "Icon", "Иконка"
-    $report = $report -replace "Name", "Название"
-    $report = $report -replace "Platform", "Платформа"
-    $report = $report -replace "Playtime", "Время игры"
-    $report = $report -replace "Last_Played_On", "Последняя игра"
-    $report = $report -replace "Session_Count", "Сессии"
-    $report = $report -replace "Completed", "Статус"
-    $report = $report -replace "Gaming_PC", "Игровой ПК"
+    $report = $report -replace "<th>Icon</th>", "<th>Иконка</th>"
+    $report = $report -replace "<th>Name</th>", "<th>Название</th>"
+    $report = $report -replace "<th>Platform</th>", "<th>Платформа</th>"
+    $report = $report -replace "<th>Playtime</th>", "<th>Время игры</th>"
+    $report = $report -replace "<th>Last_Played_On</th>", "<th>Последняя игра</th>"
+    $report = $report -replace "<th>Session_Count</th>", "<th>Сессии</th>"
+    $report = $report -replace "<th>Completed</th>", "<th>Статус</th>"
+    $report = $report -replace "<th>Gaming_PC</th>", "<th>Игровой ПК</th>"
     $report = $report -replace "_MAXPLAYTIME_", $maxPlayTime
     $report = $report -replace "_TOTALGAMECOUNT_", $games.Count
 
