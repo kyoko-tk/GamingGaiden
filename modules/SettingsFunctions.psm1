@@ -298,8 +298,8 @@ function RenderEditGameForm($GamesList) {
             $gameName = $textName.Text
 
             $playTime = $textPlayTime.Text
-            if ( -Not ($playTime -match '^[0-9]{0,5} Hr [0-5]{0,1}[0-9]{1} Min$') ) {
-                ShowMessage "Incorrect Playtime Format. Enter exactly 'x Hr y Min'." "OK" "Error"
+            if ( -Not ($playTime -match '^[0-9]{0,5} ч [0-5]{0,1}[0-9]{1} мин$') ) {
+                ShowMessage "Некорректный формат времени игры. Введите точно 'x ч y мин'." "OK" "Error"
                 $listBox.SetSelected($currentlySelectedIndex, $true)
                 return
             }
@@ -543,7 +543,7 @@ function RenderAddGameForm() {
     $textPlatform = CreateTextBox "PC" 245 100 200 20; $textPlatform.ReadOnly = $true; $addGameForm.Controls.Add($textPlatform)
 
     $labelPlayTime = Createlabel "Время игры:" 170 140; $addGameForm.Controls.Add($labelPlayTime)
-    $textPlayTime = CreateTextBox "0 Hr 0 Min" 245 140 200 20; $textPlayTime.ReadOnly = $true; $addGameForm.Controls.Add($textPlayTime)
+    $textPlayTime = CreateTextBox "0 ч 0 мин" 245 140 200 20; $textPlayTime.ReadOnly = $true; $addGameForm.Controls.Add($textPlayTime)
 
     $labelGamingPC = Createlabel "Игровой ПК:" 170 180; $addGameForm.Controls.Add($labelGamingPC)
     $dropdownGamingPC = New-Object System.Windows.Forms.ComboBox
@@ -713,7 +713,7 @@ function RenderGamingPCForm($PCList) {
     $textName = CreateTextBox "" 240 20 245 20;	$gamingPCForm.Controls.Add($textName)
 
     $labelTotalPlaytime = Createlabel "Время игры:" 170 50; $gamingPCForm.Controls.Add($labelTotalPlaytime)
-    $textTotalPlaytime = CreateTextBox "0 Hr 0 Min" 240 50 245 20; $gamingPCForm.Controls.Add($textTotalPlaytime)
+    $textTotalPlaytime = CreateTextBox "0 ч 0 мин" 240 50 245 20; $gamingPCForm.Controls.Add($textTotalPlaytime)
 
     $labelCurrency = Createlabel "Валюта:" 170 80; $gamingPCForm.Controls.Add($labelCurrency)
     $textCurrency = CreateTextBox "" 240 80 55 20;	$gamingPCForm.Controls.Add($textCurrency)
@@ -795,7 +795,7 @@ function RenderGamingPCForm($PCList) {
             $textCost.Text = $selectedPC.cost
             $textCurrency.Text = $selectedPC.currency
 
-            # Convert total_play_time from minutes to "X Hr Y Min" format
+            # Convert total_play_time from minutes to "X ч Y мин" format
             $textTotalPlaytime.Text = PlayTimeMinsToString $selectedPC.total_play_time
 
             # Set "In Use" checkbox based on database value
@@ -920,8 +920,8 @@ function RenderGamingPCForm($PCList) {
 
             # Validate and convert Total Playtime
             $playTime = $textTotalPlaytime.Text
-            if ( -Not ($playTime -match '^[0-9]{0,5} Hr [0-5]{0,1}[0-9]{1} Min$') ) {
-                ShowMessage "Total Playtime format is incorrect. Use 'X Hr Y Min' format." "OK" "Error"
+            if ( -Not ($playTime -match '^[0-9]{0,5} ч [0-5]{0,1}[0-9]{1} мин$') ) {
+                ShowMessage "Формат общего времени игры некорректен. Используйте формат 'X ч Y мин'." "OK" "Error"
                 if ($listBox.Items.Count -gt 0) {
                     $listBox.SetSelected($currentlySelectedIndex, $true)
                 }
@@ -963,7 +963,7 @@ function RenderGamingPCForm($PCList) {
     $gamingPCForm.Controls.Add($buttonUpdate)
 
     $buttonReset = CreateButton "Сброс" 170 180; $buttonReset.Add_Click({
-            $textName.Clear(); $textCost.Clear(); $textCurrency.Clear(); $textTotalPlaytime.Text = "0 Hr 0 Min";
+            $textName.Clear(); $textCost.Clear(); $textCurrency.Clear(); $textTotalPlaytime.Text = "0 ч 0 мин";
 
             $PCList = (RunDBQuery "SELECT name FROM gaming_pcs").name
             $listBox.Items.Clear(); 

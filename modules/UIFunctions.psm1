@@ -496,7 +496,7 @@ function RenderQuickView() {
         $gameIcon = [System.Drawing.Bitmap]::FromStream($iconByteStream)
 
         $minutes = $null; $hours = [math]::divrem($row.play_time, 60, [ref]$minutes);
-        $playTimeFormatted = "{0} Hr {1} Min" -f $hours, $minutes
+        $playTimeFormatted = "{0} ч {1} мин" -f $hours, $minutes
 
         [datetime]$origin = '1970-01-01 00:00:00'
         $dateFormatted = $origin.AddSeconds($row.last_play_date).ToLocalTime().ToString("dd MMMM yyyy")

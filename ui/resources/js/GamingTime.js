@@ -11,7 +11,7 @@ let finalYear;
 let finalMonth;
 let chart;
 let viewMode = "monthly";
-let periodLabel = "Day of Month";
+let periodLabel = "День месяца";
 let yearTotalTime;
 let monthTotalTime;
 let calendarYear;
@@ -341,7 +341,7 @@ function toggleViewMode() {
   if (viewMode === 'monthly') {
     // Switch to yearly view
     viewMode = 'yearly';
-    periodLabel = 'Month of Year';
+    periodLabel = 'Месяц года';
 
     selectedYear = calendarYear;
     updateChart(calendarYear, selectedMonth, true);
@@ -352,7 +352,7 @@ function toggleViewMode() {
   } else {
     // Switch to monthly view
     viewMode = 'monthly';
-    periodLabel = 'Day of Month';
+    periodLabel = 'День месяца';
 
     updateChart(selectedYear, selectedMonth, false);
     updatePeriodDisplayWithMonth();
