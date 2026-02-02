@@ -29,7 +29,7 @@
   </head>
 
   <body>
-    <h1>Life Time Summary</h1>
+    <h1>Общая сводка</h1>
     <div id="main-panel">
       <div id="summary">_SUMMARYSTATEMENT_</div>
     <div id="top-row">
@@ -50,7 +50,7 @@
         </div>
       </div>
       <div id="pc-title-column">
-        <div id="pc-section-title">Your Gaming PCs</div>
+        <div id="pc-section-title">Ваши игровые ПК</div>
         <div id="pc-navigation-bar">
           <button class="custom-button" id="prev-button">&#11164;</button>
           <div id="pc-name"></div>
@@ -67,7 +67,7 @@
         <div id="pc-stats-section">
           <div id="pc-icon"></div>
           <div id="pc-stats">
-            <p id="no-pcs-msg">Add Gaming PCs to see more stats.<br><br>Settings => Gaming PCs</p>
+            <p id="no-pcs-msg">Добавьте игровые ПК для просмотра дополнительной статистики.<br><br>Настройки => Игровые ПК</p>
             <p id="pc-in-use"></p>
             <p id="pc-lifespan"></p>
             <p id="pc-price"></p>
@@ -91,15 +91,15 @@
     <script src="./resources/js/common.js"></script>
     <script src="./resources/js/Summary.js"></script>
     <div id="navigation-bar">
-      <button class="custom-button" id="summary-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/Summary.html';">Life Time Summary</button>
-      <button class="custom-button" id="gaming-time-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/GamingTime.html';">Time Spent Gaming</button>
-      <button class="custom-button" id="most-played-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/MostPlayed.html';">Most Played</button>
-      <button class="custom-button" id="all-games-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/AllGames.html';">All Games</button>
+      <button class="custom-button" id="summary-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/Summary.html';">Общая сводка</button>
+      <button class="custom-button" id="gaming-time-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/GamingTime.html';">Время в играх</button>
+      <button class="custom-button" id="most-played-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/MostPlayed.html';">Самые популярные</button>
+      <button class="custom-button" id="all-games-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/AllGames.html';">Все игры</button>
       <button class="custom-button help-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/Manual.html';">?</button>
-      <button class="custom-button" id="idle-time-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/IdleTime.html';">Idle Time</button>
-      <button class="custom-button" id="session-history-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/SessionHistory.html';">Session History</button>
-      <button class="custom-button" id="games-per-platform-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/GamesPerPlatform.html';">Games Per Platform</button>
-      <button class="custom-button" id="pc-vs-emu-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/PCvsEmulation.html';">PC vs Emulation</button>
+      <button class="custom-button" id="idle-time-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/IdleTime.html';">Время простоя</button>
+      <button class="custom-button" id="session-history-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/SessionHistory.html';">История сессий</button>
+      <button class="custom-button" id="games-per-platform-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/GamesPerPlatform.html';">Игры по платформам</button>
+      <button class="custom-button" id="pc-vs-emu-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/PCvsEmulation.html';">ПК против эмуляции</button>
     </div>
   </body>
 </html>
