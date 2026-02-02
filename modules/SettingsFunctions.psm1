@@ -438,7 +438,7 @@ function RenderEditPlatformForm($PlatformsList) {
         })
     $editPlatformForm.Controls.Add($buttonUpdateCore)
 
-    $buttonUpdateExe = CreateButton "Добавить Exe" 300 65 130
+    $buttonUpdateExe = CreateButton "Добавить Exe" 505 65 130
     $buttonUpdateExe.Add_Click({
             $openFileDialog = OpenFileDialog "Select Executable" 'Executable (*.exe)|*.exe'
             $result = $openFileDialog.ShowDialog()
@@ -456,7 +456,7 @@ function RenderEditPlatformForm($PlatformsList) {
         })
     $editPlatformForm.Controls.Add($buttonUpdateExe)
 
-    $buttonClearExe = CreateButton "Очистить список" 300 95 130
+    $buttonClearExe = CreateButton "Очистить список" 505 95 130
     $buttonClearExe.Add_Click({
             $textExe.Text = ""
         })
@@ -808,13 +808,15 @@ function RenderGamingPCForm($PCList) {
             $checkboxCurrentPC.Checked = ($selectedPC.name -eq $currentPC)
             $disableCurrentPCCheckBoxHandler = $false
 
-            $startDatePicker.Value = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($selectedPC.start_date)
+            $calculatedStartDate = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($selectedPC.start_date)
+            $startDatePicker.Value = [Math]::Min($calculatedStartDate.Ticks, $startDatePicker.MaxDate.Ticks) | ForEach-Object { New-Object DateTime $_ }
             if ($selectedPC.in_use -eq 'TRUE') {
                 $endDatePicker.Value = [DateTime]::Today
                 $endDatePicker.Enabled = $false
             }
             else {
-                $endDatePicker.Value = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($selectedPC.end_date)
+                $calculatedEndDate = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($selectedPC.end_date)
+                $endDatePicker.Value = [Math]::Min($calculatedEndDate.Ticks, $endDatePicker.MaxDate.Ticks) | ForEach-Object { New-Object DateTime $_ }
             }
 
             $iconFileName = ToBase64 $selectedPC.name
@@ -840,7 +842,7 @@ function RenderGamingPCForm($PCList) {
         })
     $gamingPCForm.Controls.Add($listBox)
     
-    $buttonUpdateImage = CreateButton "Обновить изображение" 40 220
+    $buttonUpdateImage = CreateButton "Обновить изображение" 40 185
     $buttonUpdateImage.Size = New-Object System.Drawing.Size(165, 23)
     $buttonUpdateImage.Add_Click({
             $downloadsDirectoryPath = (New-Object -ComObject Shell.Application).Namespace('shell:Downloads').Self.Path
@@ -1033,7 +1035,7 @@ function RenderAddPlatformForm() {
         })
     $addPlatformForm.Controls.Add($buttonAddCore)
 
-    $buttonAddExe = CreateButton "Добавить Exe" 300 65 130
+    $buttonAddExe = CreateButton "Добавить Exe" 255 65 130
     $buttonAddExe.Add_Click({
             $openFileDialog = OpenFileDialog "Select Executable" 'Executable (*.exe)|*.exe'
             $result = $openFileDialog.ShowDialog()
@@ -1067,7 +1069,7 @@ function RenderAddPlatformForm() {
         })
     $addPlatformForm.Controls.Add($buttonAddExe)
 
-    $buttonClearExe = CreateButton "Очистить список" 300 95 130
+    $buttonClearExe = CreateButton "Очистить список" 255 95 130
     $buttonClearExe.Add_Click({
             $textExe.Text = ""
         })

@@ -15,7 +15,7 @@ Remove-Item -Recurse .\ui\resources\images\cache -ErrorAction SilentlyContinue
 # Generate Manual
 if (Get-Command pandoc.exe -ErrorAction SilentlyContinue) {
     pandoc.exe --ascii .\Manual.md -o .\ui\Manual.html
-    $ManualHTML = Get-Content .\ui\Manual.html -Raw
+    $ManualHTML = Get-Content .\ui\Manual.html -Raw -Encoding UTF8
 
     # Wrap each h3 and its following content until next h3
     $ManualHTML = $ManualHTML -replace '<h3[^>]*>([^<]+)</h3>((?:(?!<h3)[\s\S])*?(?=<h3|$))', '<details><summary>$1</summary>$2</details>'
@@ -23,7 +23,7 @@ if (Get-Command pandoc.exe -ErrorAction SilentlyContinue) {
     # Wrap all details in a container for column layout
     $ManualHTML = $ManualHTML -replace '(<details>[\s\S]*</details>)', '<div class="faq-container">$1</div>'
 
-    $ManualTemplate = Get-Content .\ui\templates\Manual.html.template
+    $ManualTemplate = Get-Content .\ui\templates\Manual.html.template -Encoding UTF8
     $FinalHTML = $ManualTemplate -replace "_MARKDOWN_HTML_", $ManualHTML
     [System.Web.HttpUtility]::HtmlDecode($FinalHTML) | Out-File -encoding UTF8 .\ui\Manual.html
 } else {
