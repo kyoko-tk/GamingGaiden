@@ -86,7 +86,7 @@ function updateSummayChart() {
       scales: {
         y: {
           type: "log2",
-          title: chartTitleConfig("PlayTime (Hours)"),
+          title: chartTitleConfig("Время игры (часы)"),
           ticks: {
             color: getChartTextColor()
           },
@@ -252,16 +252,16 @@ function updatePCStatsSection(pcData) {
   // to prevent Codacy from triggering false positives for XSS attack vulnerabilities.
   $("#pc-icon").html(DOMPurify.sanitize(pcData.iconUri));
 
-  $("#pc-in-use").html(DOMPurify.sanitize("<b>In Use: </b>" + pcData.start_date + " - " + pcData.end_date));
+  $("#pc-in-use").html(DOMPurify.sanitize("<b>Используется: </b>" + pcData.start_date + " - " + pcData.end_date));
   if (pcData.in_use == "TRUE") {
-    $("#pc-in-use").html(DOMPurify.sanitize("<b>In Use: </b>" + pcData.start_date + " - Present"));
+    $("#pc-in-use").html(DOMPurify.sanitize("<b>Используется: </b>" + pcData.start_date + " - Настоящее время"));
   }
 
-  $("#pc-lifespan").html(DOMPurify.sanitize("<b>Lifespan: </b>" + pcData.age));
-  $("#pc-price").html(DOMPurify.sanitize("<b>Price: </b>" + pcData.currency + pcData.cost));
-  $("#pc-games-played").html(DOMPurify.sanitize("<b>Games Played: </b>" + pcData.gamesPlayed));
-  $("#pc-hours").html(DOMPurify.sanitize("<b>Hours Logged: </b>" + pcData.totalHours + "<sup> ✞</sup>"));
-  $("#pc-running-cost").html(DOMPurify.sanitize("<b>Running Cost: </b>" + pcData.currency + valuePerHour + "/Hour | " + pcData.currency + valuePerMonth + "/Month"));
+  $("#pc-lifespan").html(DOMPurify.sanitize("<b>Срок службы: </b>" + pcData.age));
+  $("#pc-price").html(DOMPurify.sanitize("<b>Цена: </b>" + pcData.currency + pcData.cost));
+  $("#pc-games-played").html(DOMPurify.sanitize("<b>Игр сыграно: </b>" + pcData.gamesPlayed));
+  $("#pc-hours").html(DOMPurify.sanitize("<b>Часов зафиксировано: </b>" + pcData.totalHours + "<sup> ✞</sup>"));
+  $("#pc-running-cost").html(DOMPurify.sanitize("<b>Стоимость использования: </b>" + pcData.currency + valuePerHour + "/час | " + pcData.currency + valuePerMonth + "/месяц"));
 }
 
 function updateAnnualHoursChart() {
@@ -299,7 +299,7 @@ function updateAnnualHoursChart() {
             stepSize: 100,
             color: getChartTextColor()
           },
-          title: chartTitleConfig("Hours Played", 15),
+          title: chartTitleConfig("Часов сыграно", 15),
           grid: {
             display: false
           }

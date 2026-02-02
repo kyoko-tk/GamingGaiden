@@ -28,13 +28,13 @@ Chart.register(Log2Axis);
 function updatePeriodDisplayWithMonth() {
   // Display is now handled by calendar selection highlighting
   // Show total hours in warn message area
-  updateWarnMessage(parseInt(monthTotalTime) + " Hours Played");
+  updateWarnMessage(parseInt(monthTotalTime) + " часов сыграно");
 }
 
 function updatePeriodDisplayWithYear() {
   // Display is now handled by calendar year display
   // Show total hours in warn message area
-  updateWarnMessage(parseInt(yearTotalTime) + " Hours Played");
+  updateWarnMessage(parseInt(yearTotalTime) + " часов сыграно");
 }
 
 function updateWarnMessage(message) {
@@ -188,7 +188,7 @@ function updateChart(
           beginAtZero: true,
           suggestedMax: ylimit,
           type: "log2",
-          title: chartTitleConfig("PlayTime (Hours)", 15),
+          title: chartTitleConfig("Время игры (часы)", 15),
           ticks: {
             color: getChartTextColor()
           },
@@ -199,7 +199,7 @@ function updateChart(
         // Alignment Hack: Add an identical y scale on right side, to center the graph on page.
         // Then hide the right side scale by setting label color identical to background.
         yRight: {
-          title: chartTitleConfig("PlayTime (Hours)", 15, getChartBackgroundColor()),
+          title: chartTitleConfig("Время игры (часы)", 15, getChartBackgroundColor()),
           position: "right",
           grid: {
             display: false,
