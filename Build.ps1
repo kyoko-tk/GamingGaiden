@@ -2,9 +2,9 @@
 
 #------------------------------------------
 # Pre Build Cleanup
-Remove-Item -Recurse .\build\GamingGaiden
-Remove-Item -Recurse .\build\GamingGaiden.zip
-mkdir -f .\build\GamingGaiden
+Remove-Item -Recurse .\build\GamingGaiden -ErrorAction SilentlyContinue
+Remove-Item -Recurse .\build\GamingGaiden.zip -ErrorAction SilentlyContinue
+New-Item -ItemType Directory -Force -Path .\build\GamingGaiden | Out-Null
 
 Get-ChildItem -File .\ui\*.html -Exclude 404.html | Remove-Item
 Remove-Item -Recurse .\ui\resources\images\cache -ErrorAction SilentlyContinue
@@ -13,18 +13,22 @@ Remove-Item -Recurse .\ui\resources\images\cache -ErrorAction SilentlyContinue
 # Build
 
 # Generate Manual
-pandoc.exe --ascii .\Manual.md -o .\ui\Manual.html
-$ManualHTML = Get-Content .\ui\Manual.html -Raw
+if (Get-Command pandoc.exe -ErrorAction SilentlyContinue) {
+    pandoc.exe --ascii .\Manual.md -o .\ui\Manual.html
+    $ManualHTML = Get-Content .\ui\Manual.html -Raw
 
-# Wrap each h3 and its following content until next h3
-$ManualHTML = $ManualHTML -replace '<h3[^>]*>([^<]+)</h3>((?:(?!<h3)[\s\S])*?(?=<h3|$))', '<details><summary>$1</summary>$2</details>'
+    # Wrap each h3 and its following content until next h3
+    $ManualHTML = $ManualHTML -replace '<h3[^>]*>([^<]+)</h3>((?:(?!<h3)[\s\S])*?(?=<h3|$))', '<details><summary>$1</summary>$2</details>'
 
-# Wrap all details in a container for column layout
-$ManualHTML = $ManualHTML -replace '(<details>[\s\S]*</details>)', '<div class="faq-container">$1</div>'
+    # Wrap all details in a container for column layout
+    $ManualHTML = $ManualHTML -replace '(<details>[\s\S]*</details>)', '<div class="faq-container">$1</div>'
 
-$ManualTemplate = Get-Content .\ui\templates\Manual.html.template
-$FinalHTML = $ManualTemplate -replace "_MARKDOWN_HTML_", $ManualHTML
-[System.Web.HttpUtility]::HtmlDecode($FinalHTML) | Out-File -encoding UTF8 .\ui\Manual.html
+    $ManualTemplate = Get-Content .\ui\templates\Manual.html.template
+    $FinalHTML = $ManualTemplate -replace "_MARKDOWN_HTML_", $ManualHTML
+    [System.Web.HttpUtility]::HtmlDecode($FinalHTML) | Out-File -encoding UTF8 .\ui\Manual.html
+} else {
+    Write-Warning "pandoc.exe not found in PATH. Skipping Manual.html generation. Install pandoc from https://pandoc.org/ and ensure it's in your system PATH."
+}
 
 # Copy source files
 $SourceFiles = ".\Install.bat", ".\Uninstall.bat", ".\modules", ".\icons", ".\ui"
@@ -40,7 +44,11 @@ foreach ($template in $templateFiles) {
 }
 
 # Generate exe
-ps12exe -inputFile ".\GamingGaiden.ps1" -outputFile ".\build\GamingGaiden\GamingGaiden.exe"
+if (Get-Command ps12exe -ErrorAction SilentlyContinue) {
+    ps12exe -inputFile ".\GamingGaiden.ps1" -outputFile ".\build\GamingGaiden\GamingGaiden.exe"
+} else {
+    Write-Warning "ps12exe not found. Skipping GamingGaiden.exe generation. Install ps12exe using: Install-Module ps12exe -Scope CurrentUser (may require restarting PowerShell)"
+}
 
 # Package
 Compress-Archive -Force -Path .\build\GamingGaiden -DestinationPath .\build\GamingGaiden.zip
