@@ -14,86 +14,86 @@
 
 ### 外伝 (Gaiden)
 
-Japanese
+Японский
 
-noun (common)
+существительное (общее)
 
-A Tale; Side Story;
+История; Побочная история;
 
-A small powershell tray application for windows os to track gaming time. Helps you record your gaming story over the years.
+Небольшое приложение в трее на PowerShell для Windows для отслеживания игрового времени. Помогает вам записывать вашу игровую историю на протяжении многих лет.
 
 https://github.com/user-attachments/assets/4837b88c-e403-4069-a3f5-3f0147e9328a
 
-## Features
-- #### Time Tracking and Emulator Support
-    - Tracks play time & session history for PC or emulated games.
-    - Auto tracks new roms after registering any emulator just once.
-    - Supports Retroarch cores.
-    - Detects and removes idle time from gaming sessions.
-    - Out of box HWiNFO64 integration with session time and tracking status metrics.
-    - Install on multiple gaming pcs and share database to tracks games played, hours played for each pc separately.
-- #### UI and Statistics
-    - Fast browser based UI with search and sorting. Quick view popup for recent games.
-    - Multiple in depth statistics on gaming. Lifetime summary, monthly/yearly time analysis, most played games, games per emulator etc.
-    - Value for money analysis for gaming pc by calculating gaming cost per hour or per month.
-    - Integrated google image search for game icons / box art.
-    - Mark games as Playing / Finished / On Hold / Dropped to track backlog completion.
-- #### Quality of Life Features
-    - Small size (~7 MB). High performance (Sub 5 sec game detection). Light on cpu & ram.
-    - Completely offline and portable, all data stored in local database.
-    - Automated data backup after each gaming session.
+## Возможности
+- #### Отслеживание времени и поддержка эмуляторов
+    - Отслеживает время игры и историю сессий для ПК или эмулированных игр.
+    - Автоматически отслеживает новые ромы после однократной регистрации эмулятора.
+    - Поддерживает ядра Retroarch.
+    - Обнаруживает и удаляет время простоя из игровых сессий.
+    - Готовая интеграция с HWiNFO64 с метриками времени сессии и статуса отслеживания.
+    - Установка на несколько игровых ПК и совместное использование базы данных для отслеживания игр и часов игры для каждого ПК отдельно.
+- #### Интерфейс и статистика
+    - Быстрый браузерный интерфейс с поиском и сортировкой. Всплывающее окно быстрого просмотра для последних игр.
+    - Множество подробной статистики по играм. Сводка за всё время, ежемесячный/ежегодный анализ времени, самые популярные игры, игры на эмулятор и т.д.
+    - Анализ соотношения цены и качества для игрового ПК путем расчета стоимости игр в час или в месяц.
+    - Встроенный поиск изображений Google для значков игр / обложек.
+    - Отмечайте игры как Играю / Пройдено / Отложено / Брошено для отслеживания завершения бэклога.
+- #### Функции качества жизни
+    - Малый размер (~7 МБ). Высокая производительность (обнаружение игры менее 5 сек). Не нагружает CPU и RAM.
+    - Полностью автономный и портативный, все данные хранятся в локальной базе данных.
+    - Автоматическое резервное копирование данных после каждой игровой сессии.
 
 > [!WARNING]  
-> Gaming Gaiden is only available for download on this Github repo. Any copy available elsewhere could be malicious.
+> Gaming Gaiden доступен для загрузки только на этом Github репозитории. Любая копия, доступная в другом месте, может быть вредоносной.
 
-## How to install / upgrade / use
-1. Open a Powershell window as admin and run below command to allow powershell modules to load on your system. Choose `Yes` when prompted.
+## Как установить / обновить / использовать
+1. Откройте окно Powershell от имени администратора и выполните следующую команду, чтобы разрешить загрузку модулей powershell в вашей системе. Выберите `Yes` при появлении запроса.
     - `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
 
-2. Download ***GamingGaiden.zip*** from the [latest release](https://github.com/kulvind3r/GamingGaiden/releases/latest).
-3. Extract ***GamingGaiden*** folder and Run `Install.bat`. Choose Yes/No for autostart at Boot.
-4. Use the shortcut on desktop / start menu for launching the application.
-5. Regularly backup your `GamingGaiden.db` and `backups` folder to avoid data loss. Click ***Settings => Open Install Directory*** option in app menu to find them.
+2. Загрузите ***GamingGaiden.zip*** из [последнего релиза](https://github.com/kulvind3r/GamingGaiden/releases/latest).
+3. Распакуйте папку ***GamingGaiden*** и запустите `Install.bat`. Выберите Да/Нет для автозапуска при загрузке.
+4. Используйте ярлык на рабочем столе / в меню «Пуск» для запуска приложения.
+5. Регулярно создавайте резервные копии `GamingGaiden.db` и папки `backups`, чтобы избежать потери данных. Нажмите ***Настройки => Открыть каталог установки*** в меню приложения, чтобы найти их.
 
-## How to uninstall
-Run `Uninstall Gaming Gaiden` from the `Gaming Gaiden` start menu folder. `GamingGaiden.db` and `backups` are not removed for preserving data.
+## Как удалить
+Запустите `Uninstall Gaming Gaiden` из папки меню «Пуск» `Gaming Gaiden`. `GamingGaiden.db` и `backups` не удаляются для сохранения данных.
 
-## Unknown Publisher
-Windows SmartScreen may warn that the application is from an ***Unknown Publisher*** because it lacks signature from a public CA. 
-Signing cost for apps is hundreds of dollars per year. Can't afford them.
+## Неизвестный издатель
+Windows SmartScreen может предупредить, что приложение от ***Неизвестного издателя***, поскольку у него нет подписи от публичного центра сертификации. 
+Стоимость подписи для приложений составляет сотни долларов в год. Не могу себе это позволить.
 
-## Antivirus False Positives
+## Ложные срабатывания антивируса
 > :hearts:
-> Anitvirus false positives are hard to fight.
-> If you have found the app useful and safe. Please leave a star on github to increase trust.
+> С ложными срабатываниями антивируса трудно бороться.
+> Если вы нашли приложение полезным и безопасным. Пожалуйста, поставьте звезду на github, чтобы повысить доверие.
 
-GamingGaiden performs following tasks that are similar to common malware behavior, leading it to be flagged as malware by antivirus software.
+GamingGaiden выполняет следующие задачи, которые похожи на обычное поведение вредоносного ПО, что приводит к тому, что антивирусное программное обеспечение помечает его как вредоносное.
 
-- Scanning running programs to detect and track games.
-- Adding registry entries for HWinfo64 integration.
-- Periodically sleeping to conserve resources.
-- Monitoring user activity to detect idle time.
-- Packaged as an executable using ps12exe.
+- Сканирование запущенных программ для обнаружения и отслеживания игр.
+- Добавление записей реестра для интеграции с HWinfo64.
+- Периодический переход в спящий режим для экономии ресурсов.
+- Мониторинг активности пользователя для обнаружения времени простоя.
+- Упаковка в виде исполняемого файла с помощью ps12exe.
 
-Its PowerShell-based implementation also raises flags as powershell scripts can be used maliciously and have low trust in tech community.
+Его реализация на основе PowerShell также вызывает флаги, поскольку скрипты powershell могут использоваться злонамеренно и имеют низкое доверие в техническом сообществе.
 
-Antivirus flag such behavior to keep users safe without doing actual verification of malicious actiity. Fixing false positives requires manually requesting antivirus providers to unflag GamingGaiden or rewriting it in a compiled language like C#. Even then there is no guarantee of a fix due to it's functionality being process scanning.
+Антивирус помечает такое поведение, чтобы обезопасить пользователей, не проводя фактической проверки на вредоносную активность. Для исправления ложных срабатываний требуется вручную запрашивать у поставщиков антивируса снятие флагов с GamingGaiden или переписать его на компилируемый язык, например C#. Даже в этом случае нет гарантии исправления из-за его функциональности сканирования процессов.
 
-Given that I wrote it for personal use, above is not something I can work on atleast for some time. The source code is open and available for anyone to review and ensure nothing wrong is happening. Users are responsible for their own safety and actions when using the program. 
+Учитывая, что я написал его для личного использования, вышеперечисленное - это не то, над чем я могу работать, по крайней мере, какое-то время. Исходный код открыт и доступен для всех, чтобы проверить и убедиться, что ничего плохого не происходит. Пользователи несут ответственность за свою собственную безопасность и действия при использовании программы.
 
-Please remember that open-source software comes without any support or warranties.
+Пожалуйста, помните, что программное обеспечение с открытым исходным кодом поставляется без какой-либо поддержки или гарантий.
 
-## Attributions
-Made with love using 
+## Благодарности
+Сделано с любовью, используя 
 
-- [PSSQLite](https://www.powershellgallery.com/packages/PSSQLite) by [Warren Frame](https://github.com/RamblingCookieMonster)
-- [ps12exe](https://github.com/steve02081504/ps12exe) by [Steve Green](https://github.com/steve02081504)
-- [DOMPurify](https://github.com/cure53/DOMPurify) by [Cure53](https://github.com/cure53)
+- [PSSQLite](https://www.powershellgallery.com/packages/PSSQLite) от [Warren Frame](https://github.com/RamblingCookieMonster)
+- [ps12exe](https://github.com/steve02081504/ps12exe) от [Steve Green](https://github.com/steve02081504)
+- [DOMPurify](https://github.com/cure53/DOMPurify) от [Cure53](https://github.com/cure53)
 - [DataTables](https://datatables.net/)
 - [Jquery](https://jquery.com/)
 - [ChartJs](https://www.chartjs.org/)
-- Various Icons from [Icons8](https://icons8.com)
-- Game Cartridge Icon from [FreePik on Flaticon](https://www.flaticon.com/free-icons/game-cartridge)
-- Cute [Ninja Vector by Catalyststuff on Freepik](https://www.freepik.com/free-vector/cute-ninja-gaming-cartoon-vector-icon-illustration-people-technology-icon-concept-isolated-flat_42903434.htm)
-- [Ninja Garden Font](https://www.fontspace.com/ninja-garden-font-f32923) by [Iconian Fonts](https://www.fontspace.com/iconian-fonts)
+- Различные иконки от [Icons8](https://icons8.com)
+- Иконка игрового картриджа от [FreePik на Flaticon](https://www.flaticon.com/free-icons/game-cartridge)
+- Милый [Ниндзя Вектор от Catalyststuff на Freepik](https://www.freepik.com/free-vector/cute-ninja-gaming-cartoon-vector-icon-illustration-people-technology-icon-concept-isolated-flat_42903434.htm)
+- [Ninja Garden Font](https://www.fontspace.com/ninja-garden-font-f32923) от [Iconian Fonts](https://www.fontspace.com/iconian-fonts)
 
