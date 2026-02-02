@@ -27,7 +27,7 @@ if (Get-Command pandoc.exe -ErrorAction SilentlyContinue) {
     $FinalHTML = $ManualTemplate -replace "_MARKDOWN_HTML_", $ManualHTML
     [System.Web.HttpUtility]::HtmlDecode($FinalHTML) | Out-File -encoding UTF8 .\ui\Manual.html
 } else {
-    Write-Warning "pandoc.exe not found. Skipping Manual.html generation. Install pandoc from https://pandoc.org/"
+    Write-Warning "pandoc.exe not found in PATH. Skipping Manual.html generation. Install pandoc from https://pandoc.org/ and ensure it's in your system PATH."
 }
 
 # Copy source files
@@ -47,7 +47,7 @@ foreach ($template in $templateFiles) {
 if (Get-Command ps12exe -ErrorAction SilentlyContinue) {
     ps12exe -inputFile ".\GamingGaiden.ps1" -outputFile ".\build\GamingGaiden\GamingGaiden.exe"
 } else {
-    Write-Warning "ps12exe not found. Skipping GamingGaiden.exe generation. Install ps12exe using: Install-Module ps12exe -Scope CurrentUser"
+    Write-Warning "ps12exe not found. Skipping GamingGaiden.exe generation. Install ps12exe using: Install-Module ps12exe -Scope CurrentUser (may require restarting PowerShell)"
 }
 
 # Package
