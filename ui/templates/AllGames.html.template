@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta charset="UTF-8">
     <title>Gaming Gaiden</title>
     <link
       rel="icon"
@@ -30,7 +31,7 @@
         });
 
         var formattedTotal = formatPlaytime(total);
-        $("#TotalPlaytime").html('Total Playtime\n' + formattedTotal);
+        $("#TotalPlaytime").html('Общее время игры\n' + formattedTotal);
       }
 
       $(document).ready(function () {
@@ -97,7 +98,7 @@
 
         $("#TotalPlaytime-placeholder")[0].insertAdjacentHTML(
           "beforeend",
-          '<div id="TotalPlaytime">Total Playtime\n</div>'
+          '<div id="TotalPlaytime">Общее время игры\n</div>'
         );
 
         var filterElement = $("#DataTables_Table_0_filter").detach();
@@ -108,11 +109,11 @@
           .addEventListener("click", () => {
             if ($("table").DataTable().page.len() == 8) {
               document.getElementById("Toggle-Pagination").innerText =
-                "Paginate";
+                "Пагинация";
               $("table").DataTable().page.len(-1).draw();
             } else {
               document.getElementById("Toggle-Pagination").innerText =
-                "Show All";
+                "Показать все";
               $("table").DataTable().page.len(8).draw();
             }
             updateTotalPlaytime();
@@ -133,7 +134,7 @@
     <div id="main-panel">
       <div id="games-table-container">_GAMESTABLE_</div>
       <div id="button-container">
-        <button class="custom-button" id="Toggle-Pagination">Show All</button>
+        <button class="custom-button" id="Toggle-Pagination">Показать все</button>
       </div>
     </div>
     <div id="navigation-bar">
