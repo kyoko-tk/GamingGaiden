@@ -96,7 +96,7 @@ function updateSummayChart() {
         },
         x: {
           type: "log2",
-          title: chartTitleConfig("Game Sessions", 15),
+          title: chartTitleConfig("Игровые сессии", 15),
           ticks: {
             color: getChartTextColor()
           },
@@ -121,9 +121,9 @@ function updateSummayChart() {
             label: function (context) {
               let label =
                 context.parsed.y +
-                " hrs over " +
+                " ч за " +
                 context.parsed.x +
-                " sessions";
+                " сессий";
               return label;
             },
           },
@@ -167,11 +167,11 @@ function loadSummaryDataFromTable() {
   gamingData.shift();
   finishedCount--;
 
-  let gameProgressMsg = inProgressCount > 1 ? " Games In Progress" : " Game In Progress";
-  let gameFinishedMsg = finishedCount > 1 ? " Games Finished" : " Game Finished";
-  let gameHoldMsg     = holdCount > 1 ? " Games on Hold" : " Game on Hold";
-  let gameForeverMsg  = foreverCount > 1 ? " Forever Games" : " Forever Game";
-  let gameDroppedMsg  = droppedCount > 1 ? " Dropped Games " : " Dropped Game";
+  let gameProgressMsg = inProgressCount > 1 ? " Игр в процессе" : " Игра в процессе";
+  let gameFinishedMsg = finishedCount > 1 ? " Игр завершено" : " Игра завершена";
+  let gameHoldMsg     = holdCount > 1 ? " Игр отложено" : " Игра отложена";
+  let gameForeverMsg  = foreverCount > 1 ? " Вечных игр" : " Вечная игра";
+  let gameDroppedMsg  = droppedCount > 1 ? " Игр брошено" : " Игра брошена";
 
   $("#progress-count").text(inProgressCount + gameProgressMsg);
   $("#finished-count").text(finishedCount + gameFinishedMsg);
@@ -305,7 +305,7 @@ function updateAnnualHoursChart() {
           }
         },
         x: {
-          title: chartTitleConfig("Year", 15),
+          title: chartTitleConfig("Год", 15),
           ticks: {
             color: getChartTextColor()
           },
@@ -323,7 +323,7 @@ function updateAnnualHoursChart() {
         legend: { display: false },
         datalabels: {
           formatter: function (value) {
-            return Math.floor(value) + " Hrs";
+            return Math.floor(value) + " ч";
           },
           anchor: "end",
           align: "top",

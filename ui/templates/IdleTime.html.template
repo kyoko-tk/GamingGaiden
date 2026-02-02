@@ -42,7 +42,7 @@
     <script>
       $("table")[0].setAttribute("id", "data-table");
       let gamingData = buildGamingData("name", "time");
-      updateChart(gamingData.length, "Idle Time (Hours)");
+      updateChart(gamingData.length, "Время простоя (часы)");
     </script>
     <div id="navigation-bar">
       <button class="custom-button" id="summary-button" onclick="window.location.href='file:///C:/ProgramData/GamingGaiden/ui/Summary.html';">Общая сводка</button>

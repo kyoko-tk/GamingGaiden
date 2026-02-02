@@ -32,7 +32,7 @@ function loadGameCardsForDate(dateStr) {
   });
 
   document.getElementById('selected-date-title').textContent =
-    `Games Played on ${dateDisplay}`;
+    `Игры, сыгранные в ${dateDisplay}`;
 
   // Update stats and render
   updateStatsDisplay(games);
@@ -49,7 +49,7 @@ function loadGameCardsForMonth(monthStr) {
   const monthDisplay = `${MONTH_NAMES[parseInt(month) - 1]} ${year}`;
 
   document.getElementById('selected-date-title').textContent =
-    `Games Played in ${monthDisplay}`;
+    `Игры, сыгранные в ${monthDisplay}`;
 
   // Update stats and render
   updateStatsDisplay(games);
@@ -93,7 +93,7 @@ function renderGameCards(games) {
     card.dataset.gameName = game.game_name;
 
     const hours = (game.totalDuration / 60).toFixed(1);
-    const sessionsText = game.sessionCount === 1 ? 'session' : 'sessions';
+    const sessionsText = game.sessionCount === 1 ? 'сессия' : 'сессий';
 
     card.innerHTML = `
       <img src="${game.icon}" class="game-card-icon" alt="${game.game_name}">
