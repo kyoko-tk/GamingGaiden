@@ -808,8 +808,8 @@ function RenderGamingPCForm($PCList) {
             $checkboxCurrentPC.Checked = ($selectedPC.name -eq $currentPC)
             $disableCurrentPCCheckBoxHandler = $false
 
-            $startDatePicker.Value = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($selectedPC.start_date)
-            $startDatePicker.Value = [Math]::Min($startDatePicker.Value.Ticks, $startDatePicker.MaxDate.Ticks) | ForEach-Object { New-Object DateTime $_ }
+            $calculatedStartDate = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($selectedPC.start_date)
+            $startDatePicker.Value = [Math]::Min($calculatedStartDate.Ticks, $startDatePicker.MaxDate.Ticks) | ForEach-Object { New-Object DateTime $_ }
             if ($selectedPC.in_use -eq 'TRUE') {
                 $endDatePicker.Value = [DateTime]::Today
                 $endDatePicker.Enabled = $false
