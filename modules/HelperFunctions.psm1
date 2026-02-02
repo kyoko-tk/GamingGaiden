@@ -17,7 +17,7 @@ function ToBase64($String) {
 
 function PlayTimeMinsToString($PlayTime) {
     $minutes = $null; $hours = [math]::divrem($PlayTime, 60, [ref]$minutes);
-    return ("{0} Hr {1} Min" -f $hours, $minutes)
+    return ("{0} ч {1} мин" -f $hours, $minutes)
 }
 
 function ResizeImage() {

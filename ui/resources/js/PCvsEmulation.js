@@ -38,7 +38,7 @@ function updateChart() {
         legend: chartLegendConfig,
         datalabels: {
           formatter: function (value) {
-            return value + " Hrs";
+            return value + " ч";
           },
           color: getChartTextColor(),
           font: chartDataLabelFontConfig,

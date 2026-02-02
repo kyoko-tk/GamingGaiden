@@ -71,9 +71,9 @@ function RenderGameList() {
     $gameRecords = RunDBQuery $getAllGamesQuery
     if ($gameRecords.Length -eq 0) {
         if(-Not $InBackground) {
-            ShowMessage "No Games found in DB. Please add some games first." "OK" "Error"
+            ShowMessage "Игры не найдены в БД. Пожалуйста, сначала добавьте игры." "OK" "Error"
         }
-        Log "Error: Games list empty. Returning"
+        Log "Error: Список игр пуст. Возврат"
         return $false
     }
 
@@ -118,18 +118,18 @@ function RenderGameList() {
             $gamingPCs = $pcArray -join '<br/>'
         }
 
-        $statusUri = "<div>Finished</div><img src=`".\resources\images\finished.png`">"
+        $statusUri = "<div>Пройдено</div><img src=`".\resources\images\finished.png`">"
         if ($gameRecord.completed -eq 'FALSE') {
-            $statusUri = "<div>Playing</div><img src=`".\resources\images\playing.png`">"
+            $statusUri = "<div>Играю</div><img src=`".\resources\images\playing.png`">"
         }
         if ($gameRecord.status -eq 'dropped') {
-            $statusUri = "<div>Dropped</div><img title=`"Utter Garbage!!`" src=`".\resources\images\dropped.png`">"
+            $statusUri = "<div>Брошено</div><img title=`"Полный мусор!!`" src=`".\resources\images\dropped.png`">"
         }
         if ($gameRecord.status -eq 'hold') {
-            $statusUri = "<div>Pick Later</div><img src=`".\resources\images\hold.png`">"
+            $statusUri = "<div>Отложено</div><img src=`".\resources\images\hold.png`">"
         }
         if ($gameRecord.status -eq 'forever') {
-            $statusUri = "<div>Forever</div><img src=`".\resources\images\forever.png`">"
+            $statusUri = "<div>Навсегда</div><img src=`".\resources\images\forever.png`">"
         }
 
         $currentGame = [Game]::new($iconUri, $name, $gameRecord.platform, $gameRecord.play_time, $gameRecord.session_count, $statusUri, $gameRecord.last_play_date, $gamingPCs)
@@ -164,9 +164,9 @@ function RenderGamingTime() {
     $dailyPlayTimeData = RunDBQuery $getDailyPlayTimeDataQuery
     if ($dailyPlayTimeData.Length -eq 0) {
         if(-Not $InBackground) {
-            ShowMessage "No Records of Game Time found in DB. Please play some games first." "OK" "Error"
+            ShowMessage "Записи времени игры не найдены в БД. Пожалуйста, сначала поиграйте в игры." "OK" "Error"
         }
-        Log "Error: Game time records empty. Returning"
+        Log "Error: Записи времени игры пусты. Возврат"
         return $false
     }
 
@@ -190,9 +190,9 @@ function RenderMostPlayed() {
     $gamesPlayTimeData = RunDBQuery $getGamesPlayTimeDataQuery
     if ($gamesPlayTimeData.Length -eq 0) {
         if(-Not $InBackground) {
-            ShowMessage "No Games found in DB. Please add some games first." "OK" "Error"
+            ShowMessage "Игры не найдены в БД. Пожалуйста, сначала добавьте игры." "OK" "Error"
         }
-        Log "Error: Games list empty. Returning"
+        Log "Error: Список игр пуст. Возврат"
         return $false
     }
 
@@ -216,9 +216,9 @@ function RenderSummary() {
     $gamesPlayTimeVsSessionData = RunDBQuery $getGamesPlayTimeVsSessionDataQuery
     if ($gamesPlayTimeVsSessionData.Length -eq 0) {
         if(-Not $InBackground) {
-            ShowMessage "No Games found in DB. Please add some games first." "OK" "Error"
+            ShowMessage "Игры не найдены в БД. Пожалуйста, сначала добавьте игры." "OK" "Error"
         }
-        Log "Error: Games list empty. Returning"
+        Log "Error: Список игр пуст. Возврат"
         return $false
     }
 
@@ -289,9 +289,9 @@ function RenderSummary() {
 
     if ($null -eq $playDateSummary.min_play_date -or $null -eq $playDateSummary.max_play_date) {
         if(-Not $InBackground) {
-            ShowMessage "No play time found in DB. Please play some games first." "OK" "Error"
+            ShowMessage "Время игры не найдено в БД. Пожалуйста, сначала поиграйте в игры." "OK" "Error"
         }
-        Log "Error: No playtime found in DB. Returning"
+        Log "Error: Время игры не найдено в БД. Возврат"
         return $false
     }
 
@@ -329,9 +329,9 @@ function RenderIdleTime() {
     $gamesIdleTimeData = RunDBQuery $getGamesIdleTimeDataQuery
     if ($gamesIdleTimeData.Length -eq 0) {
         if(-Not $InBackground) {
-            ShowMessage "No Idle Games found in DB." "OK" "Error"
+            ShowMessage "Игры с временем простоя не найдены в БД." "OK" "Error"
         }
-        Log "Error: Idle Games list empty. Returning"
+        Log "Error: Список игр с временем простоя пуст. Возврат"
         return $false
     }
 
@@ -360,9 +360,9 @@ function RenderGamesPerPlatform() {
     $getGamesPerPlatformData = RunDBQuery $getGamesPerPlatformDataQuery
     if ($getGamesPerPlatformData.Length -eq 0) {
         if(-Not $InBackground) {
-            ShowMessage "No Games found in DB. Please add some games first." "OK" "Error"
+            ShowMessage "Игры не найдены в БД. Пожалуйста, сначала добавьте игры." "OK" "Error"
         }
-        Log "Error: Games list empty. Returning"
+        Log "Error: Список игр пуст. Возврат"
         return $false
     }
 
@@ -386,9 +386,9 @@ function RenderPCvsEmulation() {
     $pcVsEmulationTime = RunDBQuery $getPCvsEmulationTimeQuery
     if ($pcVsEmulationTime.Length -eq 0) {
         if(-Not $InBackground) {
-            ShowMessage "No Games found in DB. Please add some games first." "OK" "Error"
+            ShowMessage "Игры не найдены в БД. Пожалуйста, сначала добавьте игры." "OK" "Error"
         }
-        Log "Error: Games list empty. Returning"
+        Log "Error: Список игр пуст. Возврат"
         return $false
     }
 
@@ -396,9 +396,9 @@ function RenderPCvsEmulation() {
 
     if ($totalPlayTime -eq 0 ) {
         if(-Not $InBackground) {
-            ShowMessage "No play time found in DB. Please play some games first." "OK" "Error"
+            ShowMessage "Время игры не найдено в БД. Пожалуйста, сначала поиграйте в игры." "OK" "Error"
         }
-        Log "Error: No playtime found in DB. Returning"
+        Log "Error: Время игры не найдено в БД. Возврат"
         return $false
     }
 
@@ -410,7 +410,7 @@ function RenderPCvsEmulation() {
 }
 
 function RenderAboutDialog() {
-    $aboutForm = CreateForm "About" 350 280 ".\icons\running.ico"
+    $aboutForm = CreateForm "О программе" 350 280 ".\icons\running.ico"
 
     $pictureBox = CreatePictureBox "./icons/banner.png" 0 10 345 70
     $aboutForm.Controls.Add($pictureBox)
@@ -451,12 +451,12 @@ function RenderQuickView() {
     $lastFiveGamesQuery = "Select icon, name, play_time, last_play_date from games ORDER BY completed, last_play_date DESC LIMIT 5"
     $gameRecords = RunDBQuery $lastFiveGamesQuery
     if ($gameRecords.Length -eq 0) {
-        ShowMessage "No Games found in DB. Please add some games first." "OK" "Error"
-        Log "Error: Games list empty. Returning"
+        ShowMessage "Игры не найдены в БД. Пожалуйста, сначала добавьте игры." "OK" "Error"
+        Log "Error: Список игр пуст. Возврат"
         return
     }
 
-    $quickViewForm = CreateForm "Currently Playing / Recently Finished Games" 390 378 ".\icons\running.ico"
+    $quickViewForm = CreateForm "Играю сейчас / Недавно завершённые игры" 390 378 ".\icons\running.ico"
     $quickViewForm.MaximizeBox = $false; $quickViewForm.MinimizeBox = $false;
     $quickViewForm.StartPosition = [System.Windows.Forms.FormStartPosition]::Manual
 
@@ -482,9 +482,9 @@ function RenderQuickView() {
     $IconColumn.ImageLayout = [System.Windows.Forms.DataGridViewImageCellLayout]::Zoom
     $dataGridView.Columns.Add($IconColumn)
 
-    $dataGridView.Columns.Add("name", "Name")
-    $dataGridView.Columns.Add("play_time", "Playtime")
-    $dataGridView.Columns.Add("last_play_date", "Last Played On")
+    $dataGridView.Columns.Add("name", "Название")
+    $dataGridView.Columns.Add("play_time", "Время игры")
+    $dataGridView.Columns.Add("last_play_date", "Последняя игра")
 
     foreach ($column in $dataGridView.Columns) {
         $column.Resizable = [System.Windows.Forms.DataGridViewTriState]::False
@@ -552,9 +552,9 @@ ORDER BY sh.start_time DESC
 
     if ($sessionData.Length -eq 0) {
         if (-Not $InBackground) {
-            ShowMessage "No session history found. Play some games first!" "OK" "Info"
+            ShowMessage "История сессий не найдена. Сначала поиграйте в игры!" "OK" "Info"
         }
-        Log "No session data available"
+        Log "Данные о сессиях недоступны"
         return $false
     }
 

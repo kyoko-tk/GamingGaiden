@@ -28,15 +28,15 @@ try {
         # Exit if Gaming Gaiden is being started from non standard location
         $currentDirectory = (Get-Location).path
         if ($currentDirectory -ne "C:\ProgramData\GamingGaiden") {
-            ShowMessage "Launched from non standard location. Please install and use the created shortcuts to start app." "Ok" "Error"
+            ShowMessage "Запуск из нестандартного места. Пожалуйста, установите программу и используйте созданные ярлыки для запуска." "Ok" "Error"
             exit 1;
         }
 
         # Exit if Gaming Gaiden is already Running
         $results = [System.Diagnostics.Process]::GetProcessesByName("GamingGaiden")
         if ($results.Length -gt 1) {
-            ShowMessage "Gaming Gaiden is already running. Check system tray.`r`nNot Starting another Instance." "Ok" "Error"
-            Log "Error: Gaming Gaiden already running. Not Starting another Instance."
+            ShowMessage "Gaming Gaiden уже запущен. Проверьте системный трей.`r`nНовый экземпляр не запускается." "Ok" "Error"
+            Log "Error: Gaming Gaiden уже запущен. Новый экземпляр не запускается."
             exit 1;
         }
     }
@@ -232,23 +232,23 @@ try {
     $AppNotifyIcon.Icon = $IconRunning
     $AppNotifyIcon.Visible = $true
 
-    $allGamesMenuItem = CreateMenuItem "All Games"
+    $allGamesMenuItem = CreateMenuItem "Все игры"
 
-    $exitMenuItem = CreateMenuItem "Exit"
-    $StartTrackerMenuItem = CreateMenuItem "Start Tracker"
-    $StopTrackerMenuItem = CreateMenuItem "Stop Tracker"
-    $helpMenuItem = CreateMenuItem "Help / FAQs"
-    $aboutMenuItem = CreateMenuItem "About"
+    $exitMenuItem = CreateMenuItem "Выход"
+    $StartTrackerMenuItem = CreateMenuItem "Запустить трекер"
+    $StopTrackerMenuItem = CreateMenuItem "Остановить трекер"
+    $helpMenuItem = CreateMenuItem "Справка / FAQ"
+    $aboutMenuItem = CreateMenuItem "О программе"
 
-    $settingsSubMenuItem = CreateMenuItem "Settings"
-    $addGameMenuItem = CreateMenuItem "Add Game"
-    $addPlatformMenuItem = CreateMenuItem "Add Emulator"
-    $editGameMenuItem = CreateMenuItem "Edit Game"
-    $editPlatformMenuItem = CreateMenuItem "Edit Emulator"
-    $gamingPCMenuItem = CreateMenuItem "Gaming PCs"
-    $openInstallDirectoryMenuItem = CreateMenuItem "Open Install Directory"
-    $lightThemeMenuItem = CreateMenuItem "Light Theme"
-    $darkThemeMenuItem = CreateMenuItem "Dark Theme"
+    $settingsSubMenuItem = CreateMenuItem "Настройки"
+    $addGameMenuItem = CreateMenuItem "Добавить игру"
+    $addPlatformMenuItem = CreateMenuItem "Добавить эмулятор"
+    $editGameMenuItem = CreateMenuItem "Редактировать игру"
+    $editPlatformMenuItem = CreateMenuItem "Редактировать эмулятор"
+    $gamingPCMenuItem = CreateMenuItem "Игровые ПК"
+    $openInstallDirectoryMenuItem = CreateMenuItem "Открыть каталог установки"
+    $lightThemeMenuItem = CreateMenuItem "Светлая тема"
+    $darkThemeMenuItem = CreateMenuItem "Тёмная тема"
     $settingsSubMenuItem.DropDownItems.Add($addGameMenuItem)
     $settingsSubMenuItem.DropDownItems.Add($editGameMenuItem)
     $settingsSubMenuItem.DropDownItems.Add($menuItemSeparator1)
@@ -262,14 +262,14 @@ try {
     $settingsSubMenuItem.DropDownItems.Add($openInstallDirectoryMenuItem)
     
 
-    $statsSubMenuItem = CreateMenuItem "Statistics"
-    $gamingTimeMenuItem = CreateMenuItem "Time Spent Gaming"
-    $mostPlayedMenuItem = CreateMenuItem "Most Played"
-    $idleTimeMenuItem = CreateMenuItem "Idle Time"
-    $pcVsEmulationMenuItem = CreateMenuItem "PC vs Emulation"
-    $summaryItem = CreateMenuItem "Life Time Summary"
-    $gamesPerPlatformMenuItem = CreateMenuItem "Games Per Platform"
-    $sessionHistoryMenuItem = CreateMenuItem "Session History"
+    $statsSubMenuItem = CreateMenuItem "Статистика"
+    $gamingTimeMenuItem = CreateMenuItem "Время в играх"
+    $mostPlayedMenuItem = CreateMenuItem "Самые популярные"
+    $idleTimeMenuItem = CreateMenuItem "Время простоя"
+    $pcVsEmulationMenuItem = CreateMenuItem "ПК против эмуляции"
+    $summaryItem = CreateMenuItem "Общая сводка"
+    $gamesPerPlatformMenuItem = CreateMenuItem "Игры по платформам"
+    $sessionHistoryMenuItem = CreateMenuItem "История сессий"
     $statsSubMenuItem.DropDownItems.Add($summaryItem)
     $statsSubMenuItem.DropDownItems.Add($gamingTimeMenuItem)
     $statsSubMenuItem.DropDownItems.Add($sessionHistoryMenuItem)
@@ -404,8 +404,8 @@ try {
 
             $gamesList = (RunDBQuery "SELECT name FROM games").name
             if ($gamesList.Length -eq 0) {
-                ShowMessage "No Games found in database. Please add few games first." "OK" "Error"
-                Log "Error: Games list empty. Returning"
+                ShowMessage "Игры не найдены в базе данных. Пожалуйста, сначала добавьте несколько игр." "OK" "Error"
+                Log "Error: Список игр пуст. Возврат"
                 return
             }
 
@@ -420,8 +420,8 @@ try {
 
             $platformsList = (RunDBQuery "SELECT name FROM emulated_platforms").name
             if ($platformsList.Length -eq 0) {
-                ShowMessage "No Platforms found in database. Please add few emulators first." "OK" "Error"
-                Log "Error: Platform list empty. Returning"
+                ShowMessage "Платформы не найдены в базе данных. Пожалуйста, сначала добавьте несколько эмуляторов." "OK" "Error"
+                Log "Error: Список платформ пуст. Возврат"
                 return
             }
 
@@ -447,13 +447,13 @@ try {
     $lightThemeMenuItem.Add_Click({
             Log "Switching to light theme"
             Set-Theme "light"
-            ShowMessage "Light Theme applied. Refresh pages for effect." "Ok" "Info"
+            ShowMessage "Светлая тема применена. Обновите страницы, чтобы увидеть эффект." "Ok" "Info"
         })
 
     $darkThemeMenuItem.Add_Click({
             Log "Switching to dark theme"
             Set-Theme "dark"
-            ShowMessage "Dark Theme applied. Refresh pages for effect." "Ok" "Info"
+            ShowMessage "Тёмная тема применена. Обновите страницы, чтобы увидеть эффект." "Ok" "Info"
         })
 
     #------------------------------------------

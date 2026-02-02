@@ -1,98 +1,98 @@
-### Track PC games
-1. Notify icon menu *Settings => Add Game*. 
-2. Add the executable of game using *Add Exe*.
-3. Icon should auto update. You can set a new icon by using *Search* (searches google for game icon) and *Update* (browse for image) buttons.
-4. Change the auto populated *Name* to a better one and click *Ok*.
+### Отслеживание ПК игр
+1. Меню значка в трее *Настройки => Добавить игру*. 
+2. Добавьте исполняемый файл игры с помощью *Добавить Exe*.
+3. Значок должен обновиться автоматически. Вы можете установить новый значок, используя *Поиск* (ищет значок игры в Google) и *Обновить* (обзор изображения) кнопки.
+4. Измените автоматически заполненное *Имя* на более подходящее и нажмите *ОК*.
 
-### Track emulated games
+### Отслеживание эмулированных игр
 
-**Requires launching games via command line params** like 
+**Требуется запуск игр через параметры командной строки** например 
 
 - *pcsx2-qtx64-avx2.exe %ROM%*
 - *retroarch.exe -L cores\\flycast_libretro.dll %ROM%*. 
 
-Most frontends already use the above way.
+Большинство фронтендов уже используют вышеуказанный способ.
 
-1. *Settings => Add Emulator*
-2. Enter platform (NES, Genesis, PS2, etc.)
-3. *Add Exe* - emulator executable (can add multiple per platform)
-4. For Retroarch: *Add Core* when prompted
-5. *Rom Extns* - comma-separated list without dots/spaces (zip,chd,rvg)
+1. *Настройки => Добавить эмулятор*
+2. Введите платформу (NES, Genesis, PS2 и т.д.)
+3. *Добавить Exe* - исполняемый файл эмулятора (можно добавить несколько на платформу)
+4. Для Retroarch: *Добавить ядро* при появлении запроса
+5. *Rom Extns* - список расширений ROM через запятую без точек/пробелов (zip,chd,rvg)
 
-**New emulated games are auto added using ROM filename as name of Game. If ROM file is renamed, a new game entry will get auto created.**
+**Новые эмулированные игры добавляются автоматически, используя имя файла ROM в качестве названия игры. Если файл ROM переименован, будет автоматически создана новая запись игры.**
 
-### Update tracked game status, edit play time, change icon etc.
+### Обновление статуса отслеживаемой игры, редактирование времени игры, изменение значка и т.д.
 
-App menu: *Settings => Edit Game*, select game from list (searchable).
+Меню приложения: *Настройки => Редактировать игру*, выберите игру из списка (доступен поиск).
 
-- Change executable (after reinstall)
-- Update icon (*Search* for online, *Update* to browse - png/jpg supported)
-- Manually adjust play time
-- Change platform
-- Mark as finished / other status (checkbox)
+- Изменить исполняемый файл (после переустановки)
+- Обновить значок (*Поиск* для онлайн, *Обновить* для обзора - поддерживаются png/jpg)
+- Вручную настроить время игры
+- Изменить платформу
+- Отметить как пройдено / другой статус (флажок)
 
-### Update emulator for platform
+### Обновление эмулятора для платформы
 
-*Settings => Edit Emulator*, select platform from list (searchable).
+*Настройки => Редактировать эмулятор*, выберите платформу из списка (доступен поиск).
 
-- Update executable path or add new exe for emulator
-- Change core for Retroarch
-- Modify ROM extensions
+- Обновить путь к исполняемому файлу или добавить новый exe для эмулятора
+- Изменить ядро для Retroarch
+- Изменить расширения ROM
 
-### Pause/Resume game tracking
+### Пауза/Возобновление отслеживания игр
 
-App menu: *Stop Tracker* to pause, *Start Tracker* to resume.
+Меню приложения: *Остановить трекер* для паузы, *Запустить трекер* для возобновления.
 
-### Disable/Enable auto start
+### Отключить/Включить автозапуск
 
-**Disable:** Press *Win+R*, enter *shell:startup*, delete *Gaming Gaiden* shortcut.
+**Отключить:** Нажмите *Win+R*, введите *shell:startup*, удалите ярлык *Gaming Gaiden*.
 
-**Re-enable:** Run *install.bat* from install directory, choose *yes* for auto start.
+**Повторно включить:** Запустите *install.bat* из каталога установки, выберите *да* для автозапуска.
 
-### Restore data
+### Восстановление данных
 
-1. App menu: *Settings => Open Install Directory*. Go to *backups* folder.
-2. Exit app. 
-3. Copy database file from inside one of the backup zips to install directory. 
-4. Restart app.
+1. Меню приложения: *Настройки => Открыть каталог установки*. Перейдите в папку *backups*.
+2. Выйдите из приложения. 
+3. Скопируйте файл базы данных из одного из резервных zip-файлов в каталог установки. 
+4. Перезапустите приложение.
 
-### Games launched from emulator application directly are not tracked
+### Игры, запущенные непосредственно из приложения эмулятора, не отслеживаются
 
-Games launched from emulator GUI (Retroarch, PCSX2, Dolphin, Duckstation) lack command line parameters in Windows process. Use a frontend (EmulationStation, Launchbox) or desktop shortcuts with command lines.
+Игры, запущенные из GUI эмулятора (Retroarch, PCSX2, Dolphin, Duckstation), не имеют параметров командной строки в процессе Windows. Используйте фронтенд (EmulationStation, Launchbox) или ярлыки на рабочем столе с командными строками.
 
-### Track multiple platforms using a single emulator
+### Отслеживание нескольких платформ с помощью одного эмулятора
 
-1. Copy emulator exe with platform-specific names. Example: Copy *Dolphin.exe* to *Dolphin-Wii.exe* and *Dolphin-Gamecube.exe*. 
-2. Register each platform with its renamed exe. 
-3. Update frontend/shortcuts to use new exes.
+1. Скопируйте exe эмулятора с именами, специфичными для платформы. Пример: Скопируйте *Dolphin.exe* в *Dolphin-Wii.exe* и *Dolphin-Gamecube.exe*. 
+2. Зарегистрируйте каждую платформу с ее переименованным exe. 
+3. Обновите фронтенд/ярлыки для использования новых exe.
 
-Alternative: Name platform *"Gamecube and Wii"* using single exe.
+Альтернатива: Назовите платформу *"Gamecube и Wii"*, используя один exe.
 
-### Track multiple platforms using a single Retroarch core
+### Отслеживание нескольких платформ с использованием одного ядра Retroarch
 
-1. Copy *retroarch.exe* with platform-specific names (e.g. *Retroarch-Genesis.exe*, *Retroarch-GameGear.exe*). 
-2. Register each platform with its renamed exe. 
-3. Update frontend/shortcuts.
+1. Скопируйте *retroarch.exe* с именами, специфичными для платформы (например, *Retroarch-Genesis.exe*, *Retroarch-GameGear.exe*). 
+2. Зарегистрируйте каждую платформу с ее переименованным exe. 
+3. Обновите фронтенд/ярлыки.
 
-Alternative: Name platform *"Genesis & GameGear"* using single core.
+Альтернатива: Назовите платформу *"Genesis & GameGear"*, используя одно ядро.
 
-### Track games on multiple PCs in a single Gaming Gaiden database
+### Отслеживание игр на нескольких ПК в одной базе данных Gaming Gaiden
 
-**Requires:** Cloud sync directory (OneDrive, etc.) accessible on all PCs.
+**Требуется:** Каталог синхронизации в облаке (OneDrive и т.д.), доступный на всех ПК.
 
-1. Install app on all PCs. Pick PC with most data as initial database source.
-2. On source PC: *Settings => Open Install Directory*, copy *backups* and *GamingGaiden.db* to synced folder.
-3. Exit app on all PCs.
-4. Delete *backups* and *GamingGaiden.db* from each PC's install directory.
-5. Use [Link Shell Extension](https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html) to create symbolic links (symlinks) from Gaming Gaiden install directory on each PC to the *GamingGaiden.db* file and the *backups* directory in synced folder.
-6. Start app on all PCs.
-7. Add both PCs in your "Gaming PCs" on Gaming Gaiden.
-8. Mark PC as *current* in it's Gaming Gaiden app to track games and hours played on that PC.
+1. Установите приложение на всех ПК. Выберите ПК с наибольшим объемом данных в качестве начального источника базы данных.
+2. На исходном ПК: *Настройки => Открыть каталог установки*, скопируйте *backups* и *GamingGaiden.db* в синхронизированную папку.
+3. Выйдите из приложения на всех ПК.
+4. Удалите *backups* и *GamingGaiden.db* из каталога установки каждого ПК.
+5. Используйте [Link Shell Extension](https://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html) для создания символических ссылок (symlinks) из каталога установки Gaming Gaiden на каждом ПК к файлу *GamingGaiden.db* и каталогу *backups* в синхронизированной папке.
+6. Запустите приложение на всех ПК.
+7. Добавьте оба ПК в ваши "Игровые ПК" в Gaming Gaiden.
+8. Отметьте ПК как *текущий* в его приложении Gaming Gaiden для отслеживания игр и часов, сыгранных на этом ПК.
 
-### Map games played to the right gaming pc with single database on multiple PCs
+### Сопоставление игр, сыгранных на нужном игровом ПК, с одной базой данных на нескольких ПК
 
-After setting up database share make sure all PCs are added to Gaming Gaiden
+После настройки общей базы данных убедитесь, что все ПК добавлены в Gaming Gaiden
 
-Then, on each installation of Gaming Gaiden set the correct pc as current pc in *Settings => Gaming PCs* section.
+Затем, на каждой установке Gaming Gaiden установите правильный ПК как текущий ПК в разделе *Настройки => Игровые ПК*.
 
-Games will be tagged to the gaming pc on which they are played and pc usage will be updated using session times.
+Игры будут помечены игровым ПК, на котором они были сыграны, и использование ПК будет обновлено с использованием времени сессий.
