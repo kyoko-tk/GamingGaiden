@@ -252,7 +252,7 @@ function RenderEditGameForm($GamesList) {
         })
     $editGameForm.Controls.Add($buttonUpdateIcon)
 
-    $buttonUpdateExe = CreateButton "Изменить Exe" 470 60
+    $buttonUpdateExe = CreateButton "EXE" 470 60
     $buttonUpdateExe.Add_Click({
             $openFileDialog = OpenFileDialog "Select Executable" 'Executable (*.exe)|*.exe'
             $result = $openFileDialog.ShowDialog()
@@ -647,7 +647,7 @@ function RenderAddGameForm() {
             $gameExeFile = Get-Item $textExe.Text
             $gameExeName = $gameExeFile.BaseName
             $gameIconPath = $pictureBoxImagePath.Text
-            $gameLastPlayDate = (Get-Date ([datetime]::UtcNow) -UFormat "%s").Split('.').Get(0)
+            $gameLastPlayDate = [int][double](Get-Date ([datetime]::UtcNow) -UFormat "%s")
             $gameGamingPCName = if ($dropdownGamingPC.SelectedItem -eq "") { "" } else { $dropdownGamingPC.SelectedItem }
 
             SaveGame -GameName $gameName -GameExeName $gameExeName -GameIconPath $gameIconPath `
@@ -900,7 +900,7 @@ function RenderGamingPCForm($PCList) {
                 }
                 return
             }
-            $PCStartDate = (Get-Date ($startDatePicker.Value) -UFormat %s).Split('.').Get(0)
+            $PCStartDate = [int][double](Get-Date ($startDatePicker.Value) -UFormat %s)
 
             $PCCurrency = $textCurrency.Text
             if ( -Not ($PCCurrency -match '\D{1,3}') ) {
@@ -936,7 +936,7 @@ function RenderGamingPCForm($PCList) {
                 $PCCurrentStatus = "TRUE";
             }
             else {
-                $PCEndDate = (Get-Date ($endDatePicker.Value) -UFormat %s).Split('.').Get(0)
+                $PCEndDate = [int][double](Get-Date ($endDatePicker.Value) -UFormat %s)
                 $PCCurrentStatus = "FALSE";
                 if ( $endDatePicker.Value -gt [DateTime]::Today -or $PCStartDate -gt $PCEndDate) {
                     ShowMessage "End Date Cannot be in Future or before Start Date'." "OK" "Error"
@@ -1035,7 +1035,7 @@ function RenderAddPlatformForm() {
         })
     $addPlatformForm.Controls.Add($buttonAddCore)
 
-    $buttonAddExe = CreateButton "EXE" 255 65 60
+    $buttonAddExe = CreateButton "EXE" 290 80 60
     $buttonAddExe.Add_Click({
             $openFileDialog = OpenFileDialog "Select Executable" 'Executable (*.exe)|*.exe'
             $result = $openFileDialog.ShowDialog()
@@ -1069,7 +1069,7 @@ function RenderAddPlatformForm() {
         })
     $addPlatformForm.Controls.Add($buttonAddExe)
 
-    $buttonClearExe = CreateButton "Очистить" 320 95 80
+    $buttonClearExe = CreateButton "Очистить" 290 110 80
     $buttonClearExe.Add_Click({
             $textExe.Text = ""
         })
