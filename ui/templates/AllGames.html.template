@@ -72,7 +72,7 @@
                 if (type === "display" || type === "filter") {
                   var utcSeconds = parseInt(data);
                   // Handle NULL, 0, or invalid timestamps
-                  if (!utcSeconds || isNaN(utcSeconds) || utcSeconds <= 0) {
+                  if (isNaN(utcSeconds) || utcSeconds <= 0) {
                     return "Нет данных";
                   }
                   var date = new Date(0);
