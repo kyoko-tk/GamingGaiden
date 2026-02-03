@@ -70,40 +70,9 @@
               targets: 7,
               render: function (data, type, row, meta) {
                 if (type === "display" || type === "filter") {
-                  var timestamp = parseInt(data);
-                  // Handle NULL, 0, or invalid timestamps
-                  if (isNaN(timestamp) || timestamp <= 0) {
-                    return "Нет данных";
-                  }
-                  
-                  // Handle different timestamp formats
-                  // Standard Unix timestamps are 10-11 digits (seconds since 1970)
-                  // Legacy data may have timestamps stored with extra precision:
-                  //   - 12-14 digits: timestamp * 10000 (needs division by 10000)
-                  //   - 15+ digits: timestamp * 100000 (needs division by 100000)
-                  var TWELVE_DIGIT_THRESHOLD = 100000000000;  // 10^11
-                  var FIFTEEN_DIGIT_THRESHOLD = 100000000000000;  // 10^14
-                  var CENTISECOND_DIVISOR = 10000;
-                  var MICROSECOND_DIVISOR = 100000;
-                  
-                  var utcSeconds = timestamp;
-                  if (timestamp > TWELVE_DIGIT_THRESHOLD) {
-                    // 12+ digit timestamp, divide by appropriate factor
-                    if (timestamp > FIFTEEN_DIGIT_THRESHOLD) {
-                      // 15+ digits: divide by 100000
-                      utcSeconds = timestamp / MICROSECOND_DIVISOR;
-                    } else {
-                      // 12-14 digits: divide by 10000
-                      utcSeconds = timestamp / CENTISECOND_DIVISOR;
-                    }
-                  }
-                  
+                  var utcSeconds = parseInt(data);
                   var date = new Date(0);
                   date.setUTCSeconds(utcSeconds);
-                  // Verify the date is valid after conversion
-                  if (isNaN(date.getTime())) {
-                    return "Нет данных";
-                  }
                   return date.toLocaleDateString(undefined, {
                     year: "numeric",
                     month: "long",
