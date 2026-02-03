@@ -1,4 +1,8 @@
-﻿function FilterListBox {
+﻿# Maximum valid Unix timestamp (approximately year 9999)
+# Used to validate timestamps before calling DateTime.AddSeconds() to prevent overflow
+$Script:MAX_VALID_UNIX_TIMESTAMP = 253402300800
+
+function FilterListBox {
     param(
         [string]$filterText,
         [System.Windows.Forms.ListBox]$listBox,
@@ -810,7 +814,7 @@ function RenderGamingPCForm($PCList) {
 
             try {
                 # Validate timestamps before using AddSeconds
-                if ($selectedPC.start_date -gt 0 -and $selectedPC.start_date -lt 253402300800) {
+                if ($selectedPC.start_date -gt 0 -and $selectedPC.start_date -lt $Script:MAX_VALID_UNIX_TIMESTAMP) {
                     $calculatedStartDate = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($selectedPC.start_date)
                 }
                 else {
@@ -823,19 +827,21 @@ function RenderGamingPCForm($PCList) {
                     $endDatePicker.Enabled = $false
                 }
                 else {
-                    if ($selectedPC.end_date -gt 0 -and $selectedPC.end_date -lt 253402300800) {
+                    if ($selectedPC.end_date -gt 0 -and $selectedPC.end_date -lt $Script:MAX_VALID_UNIX_TIMESTAMP) {
                         $calculatedEndDate = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($selectedPC.end_date)
                     }
                     else {
                         $calculatedEndDate = [DateTime]::Today
                     }
                     $endDatePicker.Value = [Math]::Min($calculatedEndDate.Ticks, $endDatePicker.MaxDate.Ticks) | ForEach-Object { New-Object DateTime $_ }
+                    $endDatePicker.Enabled = $true
                 }
             }
             catch {
                 Log "Warning: Failed to calculate PC dates. Using current date."
                 $startDatePicker.Value = [DateTime]::Today
                 $endDatePicker.Value = [DateTime]::Today
+                $endDatePicker.Enabled = $true
             }
 
             $iconFileName = ToBase64 $selectedPC.name

@@ -1,4 +1,8 @@
-﻿function DetectGame() {
+﻿# Maximum valid Unix timestamp (approximately year 9999)
+# Used to validate timestamps before calling DateTime.AddSeconds() to prevent overflow
+$Script:MAX_VALID_UNIX_TIMESTAMP = 253402300800
+
+function DetectGame() {
     Log "Starting game detection"
 
     # Fetch games in order of most recent to least recent

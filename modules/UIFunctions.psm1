@@ -1,4 +1,8 @@
-﻿class Game {
+﻿# Maximum valid Unix timestamp (approximately year 9999)
+# Used to validate timestamps before calling DateTime.AddSeconds() to prevent overflow
+$Script:MAX_VALID_UNIX_TIMESTAMP = 253402300800
+
+class Game {
     [ValidateNotNullOrEmpty()][string]$Icon
     [ValidateNotNullOrEmpty()][string]$Name
     [ValidateNotNullOrEmpty()][string]$Platform
@@ -267,7 +271,7 @@ function RenderSummary() {
         # Calculate PC age in PowerShell
         try {
             # Validate timestamps before using AddSeconds
-            if ($gamingPCRecord.start_date -gt 0 -and $gamingPCRecord.start_date -lt 253402300800) {
+            if ($gamingPCRecord.start_date -gt 0 -and $gamingPCRecord.start_date -lt $Script:MAX_VALID_UNIX_TIMESTAMP) {
                 $startDate = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($gamingPCRecord.start_date)
             }
             else {
@@ -277,7 +281,7 @@ function RenderSummary() {
             if ($gamingPCRecord.in_use -eq 'TRUE') {
                 $endDate = Get-Date
             }
-            elseif ($gamingPCRecord.end_date -gt 0 -and $gamingPCRecord.end_date -lt 253402300800) {
+            elseif ($gamingPCRecord.end_date -gt 0 -and $gamingPCRecord.end_date -lt $Script:MAX_VALID_UNIX_TIMESTAMP) {
                 $endDate = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($gamingPCRecord.end_date)
             }
             else {
@@ -537,8 +541,7 @@ function RenderQuickView() {
         [datetime]$origin = '1970-01-01 00:00:00'
         try {
             # Validate timestamp is within valid range for AddSeconds
-            if ($row.last_play_date -gt 0 -and $row.last_play_date -lt 253402300800) {
-                # 253402300800 is approximately year 9999 in Unix time
+            if ($row.last_play_date -gt 0 -and $row.last_play_date -lt $Script:MAX_VALID_UNIX_TIMESTAMP) {
                 $dateFormatted = $origin.AddSeconds($row.last_play_date).ToLocalTime().ToString("dd MMMM yyyy")
             }
             else {
