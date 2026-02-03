@@ -199,12 +199,6 @@ td:nth-child(7) {
   color: var(--text-secondary) !important;
 }
 
-html.dark .dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
-html.dark .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
-html.dark .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
-  color: var(--text-secondary) !important;
-}
-
 /* Playtime relative bar fill */
 .playtimegradient:not(th) {
   background-image: linear-gradient(
