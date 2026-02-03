@@ -120,7 +120,7 @@ function MonitorGame($DetectedExe) {
     $romBasedName = $null
     $entityFound = $null
     $updatedPlayTime = 0
-    $updatedLastPlayDate = [int64][double](Get-Date ([datetime]::UtcNow) -UFormat %s)
+    $updatedLastPlayDate = (Get-Date ([datetime]::UtcNow) -UFormat %s).Split('.').Get(0)
 
     # Capture process start time for session history
     $processes = [System.Diagnostics.Process]::GetProcessesByName($DetectedExe)
@@ -129,7 +129,7 @@ function MonitorGame($DetectedExe) {
     # Validate process start time and convert to Unix timestamp
     if ($null -ne $processStartTime -and $processStartTime -is [DateTime]) {
         try {
-            $sessionStartTimeUnix = [int64][double](Get-Date ($processStartTime.ToUniversalTime()) -UFormat %s)
+            $sessionStartTimeUnix = [int](Get-Date ($processStartTime.ToUniversalTime()) -UFormat %s)
         }
         catch {
             Log "Warning: Failed to convert process start time to Unix timestamp. Using current time instead."
