@@ -71,8 +71,16 @@
               render: function (data, type, row, meta) {
                 if (type === "display" || type === "filter") {
                   var utcSeconds = parseInt(data);
+                  // Handle NULL, 0, or invalid timestamps
+                  if (!utcSeconds || isNaN(utcSeconds) || utcSeconds <= 0) {
+                    return "Нет данных";
+                  }
                   var date = new Date(0);
                   date.setUTCSeconds(utcSeconds);
+                  // Verify the date is valid after conversion
+                  if (isNaN(date.getTime())) {
+                    return "Нет данных";
+                  }
                   return date.toLocaleDateString(undefined, {
                     year: "numeric",
                     month: "long",
