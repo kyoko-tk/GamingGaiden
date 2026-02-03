@@ -106,6 +106,15 @@ td {
   color: var(--text-primary);
 }
 
+/* Ensure table cells use theme colors */
+table.dataTable tbody td {
+  color: var(--text-primary) !important;
+}
+
+table.dataTable thead th {
+  color: var(--text-inverse) !important;
+}
+
 /* Define specific styles for the Icon column */
 td:first-child {
   width: 5%;
@@ -181,6 +190,13 @@ td:nth-child(7) {
 #DataTables_Table_0_paginate {
   margin-right: 0;
   color: var(--text-primary);
+}
+
+/* Override DataTables library hardcoded colors for theme support */
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+  color: var(--text-secondary) !important;
 }
 
 /* Playtime relative bar fill */
