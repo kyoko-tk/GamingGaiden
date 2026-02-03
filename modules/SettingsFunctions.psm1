@@ -1,4 +1,8 @@
-﻿function FilterListBox {
+﻿# Maximum valid Unix timestamp (approximately year 9999)
+# Used to validate timestamps before calling DateTime.AddSeconds() to prevent overflow
+$Script:MAX_VALID_UNIX_TIMESTAMP = 253402300800
+
+function FilterListBox {
     param(
         [string]$filterText,
         [System.Windows.Forms.ListBox]$listBox,
@@ -808,15 +812,36 @@ function RenderGamingPCForm($PCList) {
             $checkboxCurrentPC.Checked = ($selectedPC.name -eq $currentPC)
             $disableCurrentPCCheckBoxHandler = $false
 
-            $calculatedStartDate = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($selectedPC.start_date)
-            $startDatePicker.Value = [Math]::Min($calculatedStartDate.Ticks, $startDatePicker.MaxDate.Ticks) | ForEach-Object { New-Object DateTime $_ }
-            if ($selectedPC.in_use -eq 'TRUE') {
-                $endDatePicker.Value = [DateTime]::Today
-                $endDatePicker.Enabled = $false
+            try {
+                # Validate timestamps before using AddSeconds
+                if ($selectedPC.start_date -gt 0 -and $selectedPC.start_date -lt $Script:MAX_VALID_UNIX_TIMESTAMP) {
+                    $calculatedStartDate = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($selectedPC.start_date)
+                }
+                else {
+                    $calculatedStartDate = [DateTime]::Today
+                }
+                $startDatePicker.Value = [Math]::Min($calculatedStartDate.Ticks, $startDatePicker.MaxDate.Ticks) | ForEach-Object { New-Object DateTime $_ }
+                
+                if ($selectedPC.in_use -eq 'TRUE') {
+                    $endDatePicker.Value = [DateTime]::Today
+                    $endDatePicker.Enabled = $false
+                }
+                else {
+                    if ($selectedPC.end_date -gt 0 -and $selectedPC.end_date -lt $Script:MAX_VALID_UNIX_TIMESTAMP) {
+                        $calculatedEndDate = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($selectedPC.end_date)
+                    }
+                    else {
+                        $calculatedEndDate = [DateTime]::Today
+                    }
+                    $endDatePicker.Value = [Math]::Min($calculatedEndDate.Ticks, $endDatePicker.MaxDate.Ticks) | ForEach-Object { New-Object DateTime $_ }
+                    $endDatePicker.Enabled = $true
+                }
             }
-            else {
-                $calculatedEndDate = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($selectedPC.end_date)
-                $endDatePicker.Value = [Math]::Min($calculatedEndDate.Ticks, $endDatePicker.MaxDate.Ticks) | ForEach-Object { New-Object DateTime $_ }
+            catch {
+                Log "Warning: Failed to calculate PC dates. Using current date."
+                $startDatePicker.Value = [DateTime]::Today
+                $endDatePicker.Value = [DateTime]::Today
+                $endDatePicker.Enabled = $true
             }
 
             $iconFileName = ToBase64 $selectedPC.name
