@@ -67,7 +67,7 @@ h1 {
   align-self: stretch;
   opacity: 0;
   transition: opacity 0.3s ease-in;
-  color: var(--text-primary)
+  color: var(--text-primary);
 }
 
 #games-table-container.ready {
@@ -215,7 +215,7 @@ td:nth-child(7) {
   white-space: pre;
   margin: 0;
   text-align: left;
-  color: var(--text-primary)
+  color: var(--text-primary);
 }
 
 #button-container {

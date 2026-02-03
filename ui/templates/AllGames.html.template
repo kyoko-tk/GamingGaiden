@@ -70,11 +70,27 @@
               targets: 7,
               render: function (data, type, row, meta) {
                 if (type === "display" || type === "filter") {
-                  var utcSeconds = parseInt(data);
+                  var timestamp = parseInt(data);
                   // Handle NULL, 0, or invalid timestamps
-                  if (isNaN(utcSeconds) || utcSeconds <= 0) {
+                  if (isNaN(timestamp) || timestamp <= 0) {
                     return "Нет данных";
                   }
+                  
+                  // Handle different timestamp formats
+                  // Unix timestamps should be ~10 digits (seconds since 1970)
+                  // If timestamp has 14-15 digits, it's stored with extra precision
+                  var utcSeconds = timestamp;
+                  if (timestamp > 100000000000) {
+                    // 14-15 digit timestamp, divide by 10000 or 100000
+                    if (timestamp > 10000000000000) {
+                      // 14-15 digits: divide by 100000
+                      utcSeconds = timestamp / 100000;
+                    } else {
+                      // 12-13 digits: divide by 10000
+                      utcSeconds = timestamp / 10000;
+                    }
+                  }
+                  
                   var date = new Date(0);
                   date.setUTCSeconds(utcSeconds);
                   // Verify the date is valid after conversion
