@@ -116,11 +116,11 @@ function MonitorGame($DetectedExe) {
     $romBasedName = $null
     $entityFound = $null
     $updatedPlayTime = 0
-    $updatedLastPlayDate = (Get-Date ([datetime]::UtcNow) -UFormat %s).Split('.').Get(0)
+    $updatedLastPlayDate = [int][double](Get-Date ([datetime]::UtcNow) -UFormat %s)
 
     # Capture process start time for session history
     $processStartTime = ($null = [System.Diagnostics.Process]::GetProcessesByName($DetectedExe)).StartTime | Sort-Object | Select-Object -First 1
-    $sessionStartTimeUnix = [int](Get-Date ($processStartTime.ToUniversalTime()) -UFormat %s)
+    $sessionStartTimeUnix = [int][double](Get-Date ($processStartTime.ToUniversalTime()) -UFormat %s)
 
     if (IsExeEmulator $DetectedExe) {
         $emulatedGameDetails = FindEmulatedGameDetails $DetectedExe

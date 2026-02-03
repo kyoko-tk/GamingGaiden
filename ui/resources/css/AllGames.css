@@ -82,7 +82,7 @@ table {
 /* Table Header styles */
 th {
   background-color: var(--table-header-bg);
-  color: var(--text-primary);
+  color: var(--text-inverse);
   font-weight: bold;
   text-align: center !important;
 }
