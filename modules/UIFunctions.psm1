@@ -265,8 +265,31 @@ function RenderSummary() {
         $iconBitmap.Dispose()
 
         # Calculate PC age in PowerShell
-        $startDate = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($gamingPCRecord.start_date)
-        $endDate = if ($gamingPCRecord.in_use -eq 'TRUE') { Get-Date } else { (Get-Date "1970-01-01 00:00:00Z").AddSeconds($gamingPCRecord.end_date) }
+        try {
+            # Validate timestamps before using AddSeconds
+            if ($gamingPCRecord.start_date -gt 0 -and $gamingPCRecord.start_date -lt 253402300800) {
+                $startDate = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($gamingPCRecord.start_date)
+            }
+            else {
+                $startDate = Get-Date
+            }
+            
+            if ($gamingPCRecord.in_use -eq 'TRUE') {
+                $endDate = Get-Date
+            }
+            elseif ($gamingPCRecord.end_date -gt 0 -and $gamingPCRecord.end_date -lt 253402300800) {
+                $endDate = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($gamingPCRecord.end_date)
+            }
+            else {
+                $endDate = Get-Date
+            }
+        }
+        catch {
+            Log "Warning: Failed to calculate PC dates. Using current date."
+            $startDate = Get-Date
+            $endDate = Get-Date
+        }
+        
         $ageSpan = New-TimeSpan -Start $startDate -End $endDate
         $ageYears = [Math]::Floor($ageSpan.TotalDays / 365.25)
         $ageMonths = [Math]::Floor(($ageSpan.TotalDays % 365.25) / 30.4375)
@@ -512,7 +535,20 @@ function RenderQuickView() {
         $playTimeFormatted = "{0} ч {1} мин" -f $hours, $minutes
 
         [datetime]$origin = '1970-01-01 00:00:00'
-        $dateFormatted = $origin.AddSeconds($row.last_play_date).ToLocalTime().ToString("dd MMMM yyyy")
+        try {
+            # Validate timestamp is within valid range for AddSeconds
+            if ($row.last_play_date -gt 0 -and $row.last_play_date -lt 253402300800) {
+                # 253402300800 is approximately year 9999 in Unix time
+                $dateFormatted = $origin.AddSeconds($row.last_play_date).ToLocalTime().ToString("dd MMMM yyyy")
+            }
+            else {
+                $dateFormatted = "Нет данных"
+            }
+        }
+        catch {
+            Log "Warning: Failed to format date for timestamp $($row.last_play_date). Using fallback."
+            $dateFormatted = "Нет данных"
+        }
 
         $dataGridView.Rows.Add($gameIcon, $row.name, $playTimeFormatted, $dateFormatted)
     }

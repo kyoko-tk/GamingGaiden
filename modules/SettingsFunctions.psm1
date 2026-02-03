@@ -808,15 +808,34 @@ function RenderGamingPCForm($PCList) {
             $checkboxCurrentPC.Checked = ($selectedPC.name -eq $currentPC)
             $disableCurrentPCCheckBoxHandler = $false
 
-            $calculatedStartDate = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($selectedPC.start_date)
-            $startDatePicker.Value = [Math]::Min($calculatedStartDate.Ticks, $startDatePicker.MaxDate.Ticks) | ForEach-Object { New-Object DateTime $_ }
-            if ($selectedPC.in_use -eq 'TRUE') {
-                $endDatePicker.Value = [DateTime]::Today
-                $endDatePicker.Enabled = $false
+            try {
+                # Validate timestamps before using AddSeconds
+                if ($selectedPC.start_date -gt 0 -and $selectedPC.start_date -lt 253402300800) {
+                    $calculatedStartDate = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($selectedPC.start_date)
+                }
+                else {
+                    $calculatedStartDate = [DateTime]::Today
+                }
+                $startDatePicker.Value = [Math]::Min($calculatedStartDate.Ticks, $startDatePicker.MaxDate.Ticks) | ForEach-Object { New-Object DateTime $_ }
+                
+                if ($selectedPC.in_use -eq 'TRUE') {
+                    $endDatePicker.Value = [DateTime]::Today
+                    $endDatePicker.Enabled = $false
+                }
+                else {
+                    if ($selectedPC.end_date -gt 0 -and $selectedPC.end_date -lt 253402300800) {
+                        $calculatedEndDate = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($selectedPC.end_date)
+                    }
+                    else {
+                        $calculatedEndDate = [DateTime]::Today
+                    }
+                    $endDatePicker.Value = [Math]::Min($calculatedEndDate.Ticks, $endDatePicker.MaxDate.Ticks) | ForEach-Object { New-Object DateTime $_ }
+                }
             }
-            else {
-                $calculatedEndDate = (Get-Date "1970-01-01 00:00:00Z").AddSeconds($selectedPC.end_date)
-                $endDatePicker.Value = [Math]::Min($calculatedEndDate.Ticks, $endDatePicker.MaxDate.Ticks) | ForEach-Object { New-Object DateTime $_ }
+            catch {
+                Log "Warning: Failed to calculate PC dates. Using current date."
+                $startDatePicker.Value = [DateTime]::Today
+                $endDatePicker.Value = [DateTime]::Today
             }
 
             $iconFileName = ToBase64 $selectedPC.name

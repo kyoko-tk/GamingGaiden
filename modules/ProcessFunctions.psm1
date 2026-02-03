@@ -119,8 +119,23 @@ function MonitorGame($DetectedExe) {
     $updatedLastPlayDate = [int64][double](Get-Date ([datetime]::UtcNow) -UFormat %s)
 
     # Capture process start time for session history
-    $processStartTime = ($null = [System.Diagnostics.Process]::GetProcessesByName($DetectedExe)).StartTime | Sort-Object | Select-Object -First 1
-    $sessionStartTimeUnix = [int64][double](Get-Date ($processStartTime.ToUniversalTime()) -UFormat %s)
+    $processes = [System.Diagnostics.Process]::GetProcessesByName($DetectedExe)
+    $processStartTime = $processes.StartTime | Sort-Object | Select-Object -First 1
+    
+    # Validate process start time and convert to Unix timestamp
+    if ($null -ne $processStartTime -and $processStartTime -is [DateTime]) {
+        try {
+            $sessionStartTimeUnix = [int64][double](Get-Date ($processStartTime.ToUniversalTime()) -UFormat %s)
+        }
+        catch {
+            Log "Warning: Failed to convert process start time to Unix timestamp. Using current time instead."
+            $sessionStartTimeUnix = $updatedLastPlayDate
+        }
+    }
+    else {
+        Log "Warning: Process start time not available. Using current time for session start."
+        $sessionStartTimeUnix = $updatedLastPlayDate
+    }
 
     if (IsExeEmulator $DetectedExe) {
         $emulatedGameDetails = FindEmulatedGameDetails $DetectedExe
