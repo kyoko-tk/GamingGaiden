@@ -50,7 +50,7 @@ https://github.com/user-attachments/assets/4837b88c-e403-4069-a3f5-3f0147e9328a
 1. Откройте окно Powershell от имени администратора и выполните следующую команду, чтобы разрешить загрузку модулей powershell в вашей системе. Выберите `Yes` при появлении запроса.
     - `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
 
-2. Загрузите ***GamingGaiden.zip*** из [последнего релиза](https://github.com/kulvind3r/GamingGaiden/releases/latest).
+2. Загрузите ***GamingGaiden.zip*** из [последнего релиза](https://github.com/kyoko-tk/GamingGaiden-ru/releases/latest).
 3. Распакуйте папку ***GamingGaiden*** и запустите `Install.bat`. Выберите Да/Нет для автозапуска при загрузке.
 4. Используйте ярлык на рабочем столе / в меню «Пуск» для запуска приложения.
 5. Регулярно создавайте резервные копии `GamingGaiden.db` и папки `backups`, чтобы избежать потери данных. Нажмите ***Настройки => Открыть каталог установки*** в меню приложения, чтобы найти их.
@@ -96,4 +96,5 @@ GamingGaiden выполняет следующие задачи, которые 
 - Иконка игрового картриджа от [FreePik на Flaticon](https://www.flaticon.com/free-icons/game-cartridge)
 - Милый [Ниндзя Вектор от Catalyststuff на Freepik](https://www.freepik.com/free-vector/cute-ninja-gaming-cartoon-vector-icon-illustration-people-technology-icon-concept-isolated-flat_42903434.htm)
 - [Ninja Garden Font](https://www.fontspace.com/ninja-garden-font-f32923) от [Iconian Fonts](https://www.fontspace.com/iconian-fonts)
+
 
